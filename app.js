@@ -22,6 +22,8 @@ app.get('/', function (req, res) {
    res.render('index', {title: 'Friendly-bot'});
 });
 
+var succ = /succ/;
+
 client.on('messageCreate', msg => {
     if(msg.content == "!blackjack"){
         client.joinVoiceChannel(msg.member.voiceState.channelID).catch((err) => { // Join the user's voice channel
@@ -49,6 +51,23 @@ client.on('messageCreate', msg => {
                     });
                 });
     }
+    if(succ.test(msg.content) && (msg.content != "!succ")){
+        client.joinVoiceChannel(msg.member.voiceState.channelID).catch((err) => { // Join the user's voice channel
+                    console.log(err); // Log the error
+                }).then((voiceConnection) => {
+                    if(voiceConnection.playing) { // Stop playing if the connection is playing something
+                        voiceConnection.stopPlaying();
+                    }
+                    voiceConnection.playFile("./sounds/succ.wav"); // Play the file and notify the user
+                    voiceConnection.once("end", () => {
+                        voiceConnection.disconnect();
+                    });
+                });
+    }
+    if(msg.content == "!succ"){
+        client.createMessage(msg.channel.id, {content: "succ", tts: true});
+    }
+
 });
 
 client.connect();
