@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const Discord = require('discord.js');
 var opus = require('opusscript');
+const jsonFile = require('jsonfile');
 
 //================for displaying a page with discord request===================
 app.set('views', path.join(__dirname, 'views'));
@@ -25,7 +26,18 @@ bot.on('ready', ()=>{
     console.log('bot is ready!');
 });
 
-soundQueue = [];
+var addQuote = /^!addquote/i;
+var findQuote = /^!quote \d*/i;
+var quotes = [];
+var soundQueue = [];
+
+jsonFile.readFile('quotes.json', function(err, obj){
+    if(err)
+        console.log(err);
+    else
+        quotes = obj.quotes;
+});
+
 function playSound(connection, fileName){
     if(connection.speaking == true){
         soundQueue.push({connection: connection, fileName: fileName});
@@ -43,6 +55,11 @@ function playSound(connection, fileName){
 }
 
 bot.on('message', message => {
+
+    //help message, lists most commands, vaguely
+    if(message.content === '!help') {
+        message.channel.sendMessage('!help\n!succ\n!blackjack\n!ohshit\n!wah\n!uptown\n!yee\n!addquote (quote here)\n!quote\n!quote (number for quote)');
+    }
 
     if (message.content === '!blackjack') {
       message.member.voiceChannel.join().then(connection =>{
@@ -79,6 +96,28 @@ bot.on('message', message => {
       message.member.voiceChannel.join().then(connection =>{
           playSound(connection, 'yeefull.mp3');
       });
+    }
+    if (addQuote.test(message.content)){
+        quotes.push(message.content.slice(10));
+        jsonFile.writeFile('quotes.json', {quotes: quotes}, function(err){
+            if(err)
+                console.log(err);
+        });
+    }
+    if (message.content === '!quote') {
+        message.channel.sendMessage("\""+quotes[Math.floor(Math.random()*quotes.length)]+"\"");
+    }
+    if(findQuote.test(message.content)){
+        if(quotes[message.content.slice(7)]){
+            message.channel.sendMessage("\""+quotes[message.content.slice(7)]+"\"");
+        } else {
+            var rude = Math.floor(Math.random()*101);
+            if(rude === (42 || 57 || 98)){
+                message.channel.sendMessage("There is no quote with that number, dumbass");
+            } else {
+                message.channel.sendMessage("There is no quote with that number");
+            }
+        }
     }
 });
 
