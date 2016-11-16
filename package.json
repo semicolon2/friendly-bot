@@ -10,10 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "discord.js": "^10.0.1",
     "eris": "github:abalabahaha/eris",
     "express": "^4.14.0",
     "fs": "0.0.1-security",
     "lame": "^1.2.4",
-
+    "node-opus": "^0.2.4",
+    "opusscript": "0.0.1",
+    "pug": "^2.0.0-beta6"
   }
 }

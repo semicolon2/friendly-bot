@@ -1,5 +1,5 @@
 const env ={
-    token: 'MTgxNTE3Njc4NjYwNDE5NTg0.CokeSA.wgGy2UoKa_K7268V82CLec8bcNA'
+    token: 'MTgxNTE3Njc4NjYwNDE5NTg0.Cw1vCQ.P46mmvb6nVHia4ItOZJkyobfkNw'
 };
 
 module.exports = env;
