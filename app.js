@@ -59,9 +59,15 @@ bot.on('message', message => {
           playSound(connection, 'succ.wav');
       });
     }
-    if (message.content === '!wah') {
+    if (message.content === '!wah') { //random waluigi sounds
       message.member.voiceChannel.join().then(connection =>{
-          playSound(connection, 'wah.wav');
+          var wah = "waluigi/wah"+Math.floor((Math.random()*12)+1)+".wav";
+          playSound(connection, wah);
+      });
+    }
+    if (message.content === '!uptown') {
+      message.member.voiceChannel.join().then(connection =>{
+          playSound(connection, 'wahh.wav');
       });
     }
     if (message.content === '!yee') {
