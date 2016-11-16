@@ -97,6 +97,11 @@ bot.on('message', message => {
           playSound(connection, 'yeefull.mp3');
       });
     }
+    if (message.content === '!cory') {
+      message.member.voiceChannel.join().then(connection =>{
+          playSound(connection, 'cory.wav');
+      });
+    }
     if (addQuote.test(message.content)){
         quotes.push(message.content.slice(10));
         jsonFile.writeFile('quotes.json', {quotes: quotes}, function(err){
