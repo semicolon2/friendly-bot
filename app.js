@@ -58,7 +58,7 @@ bot.on('message', message => {
 
     //help message, lists most commands, vaguely
     if(message.content === '!help') {
-        message.channel.sendMessage('!help\n!succ\n!blackjack\n!ohshit\n!wah\n!uptown\n!yee\n!addquote (quote here)\n!quote\n!quote (number for quote)');
+        message.channel.sendMessage('!help\n!cory\n!succ\n!blackjack\n!ohshit\n!wah\n!uptown\n!yee\n!addquote (quote here)\n!quote\n!quote (number for quote)');
     }
 
     if (message.content === '!blackjack') {
