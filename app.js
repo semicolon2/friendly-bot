@@ -62,45 +62,77 @@ bot.on('message', message => {
     }
 
     if (message.content === '!blackjack') {
-      message.member.voiceChannel.join().then(connection =>{
-          playSound(connection, 'blackjack.wav');
-      });
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                playSound(connection, 'blackjack.wav');
+            });
+        } else {
+            return;
+        }
     }
     if (message.content === '!ohshit') {
-      message.member.voiceChannel.join().then(connection =>{
-          playSound(connection, 'oh_shit.wav');
-      });
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                playSound(connection, 'oh_shit.wav');
+            });
+        } else {
+            return;
+        }
     }
     if (message.content === '!succ') {
-      message.member.voiceChannel.join().then(connection =>{
-          playSound(connection, 'succ.wav');
-      });
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                playSound(connection, 'succ.wav');
+            });
+        } else {
+            return;
+        }
     }
-    if (message.content === '!wah') { //random waluigi sounds
-      message.member.voiceChannel.join().then(connection =>{
-          var wah = "waluigi/wah"+Math.floor((Math.random()*12)+1)+".wav";
-          playSound(connection, wah);
+    if (message.content === '!wah') {
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                var wah = "waluigi/wah"+Math.floor((Math.random()*12)+1)+".wav";
+            playSound(connection, wah);
+        } else {
+            return;
+        }
       });
     }
     if (message.content === '!uptown') {
-      message.member.voiceChannel.join().then(connection =>{
-          playSound(connection, 'wahh.wav');
-      });
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                playSound(connection, 'wahh.wav');
+            });
+        } else {
+            return;
+        }
     }
     if (message.content === '!yee') {
-      message.member.voiceChannel.join().then(connection =>{
-          playSound(connection, 'yee.wav');
-      });
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                playSound(connection, 'yee.wav');
+            });
+        } else {
+            return;
+        }
     }
     if (message.content === '!yeefull') {
-      message.member.voiceChannel.join().then(connection =>{
-          playSound(connection, 'yeefull.mp3');
-      });
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                playSound(connection, 'yeefull.mp3');
+            });
+        } else {
+            return;
+        }
     }
     if (message.content === '!cory') {
-      message.member.voiceChannel.join().then(connection =>{
-          playSound(connection, 'cory.wav');
-      });
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                playSound(connection, 'cory.wav');
+            });
+        } else {
+            return;
+        }
     }
     if (addQuote.test(message.content)){
         quotes.push(message.content.slice(10));
