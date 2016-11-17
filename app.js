@@ -27,9 +27,33 @@ bot.on('ready', ()=>{
 });
 
 var addQuote = /^!addquote/i;
+var regEightBall = /^!8ball/i;
 var findQuote = /^!quote \d*/i;
 var quotes = [];
 var soundQueue = [];
+
+var eightBall = [
+    "It is certain",
+    "It is decidedly so",
+    "Without a doubt",
+    "Yes, definitely",
+    "You may rely on it",
+    "As I see it, yes",
+    "Most likely",
+    "Outlook good",
+    "Yes",
+    "Signs point to yes",
+    "Reply hazy try again",
+    "Ask again later",
+    "Better not tell you now",
+    "Cannot predict now",
+    "Concentrate and ask again",
+    "Don't count on it",
+    "My reply is no",
+    "My sources say no",
+    "Outlook not so good",
+    "Very doubtful"
+];
 
 jsonFile.readFile('quotes.json', function(err, obj){
     if(err)
@@ -92,11 +116,11 @@ bot.on('message', message => {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
                 var wah = "waluigi/wah"+Math.floor((Math.random()*12)+1)+".wav";
-            playSound(connection, wah);
+                playSound(connection, wah);
+            });
         } else {
             return;
         }
-      });
     }
     if (message.content === '!uptown') {
         if(message.member.voiceChannel){
@@ -133,6 +157,9 @@ bot.on('message', message => {
         } else {
             return;
         }
+    }
+    if (regEightBall.test(message.content)){
+        message.channel.sendMessage(eightBall[Math.floor(Math.random()*eightBall.length)]);
     }
     if (addQuote.test(message.content)){
         quotes.push(message.content.slice(10));
