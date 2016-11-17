@@ -158,6 +158,15 @@ bot.on('message', message => {
             return;
         }
     }
+    if (message.content === '!cruel') {
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                playSound(connection, 'cruel.wav');
+            });
+        } else {
+            return;
+        }
+    }
     if (regEightBall.test(message.content)){
         message.channel.sendMessage(eightBall[Math.floor(Math.random()*eightBall.length)]);
     }
