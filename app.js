@@ -26,9 +26,11 @@ bot.on('ready', ()=>{
     console.log('bot is ready!');
 });
 
+//regex for some commands
 var addQuote = /^!addquote/i;
 var regEightBall = /^!8ball/i;
 var findQuote = /^!quote \d*/i;
+
 var quotes = [];
 var soundQueue = [];
 
