@@ -27,9 +27,14 @@ bot.on('ready', ()=>{
 });
 
 //regex for some commands
+var quoteCommand = /^!quote/i;
 var addQuote = /^!addquote/i;
+var modifyQuote = /^!modifyquote/i;
+var removeQuote = /^!removequote/i;
+var regQuoteNumber = /\d+/;
 var regEightBall = /^!8ball/i;
 var findQuote = /^!quote \d*/i;
+var goingToDie = /going to die/i;
 
 var quotes = [];
 var soundQueue = [];
@@ -84,7 +89,7 @@ bot.on('message', message => {
 
     //help message, lists most commands, vaguely
     if(message.content === '!help') {
-        message.channel.sendMessage('!help\n!cory\n!succ\n!blackjack\n!ohshit\n!wah\n!uptown\n!yee\n!addquote (quote here)\n!quote\n!quote (number for quote)');
+        message.channel.sendMessage('!help\n!cory\n!cruel\n!succ\n!blackjack\n!ohshit\n!wah\n!uptown\n!yee\n!addquote (quote here)\n!quote\n!quote (number for quote)\n!modifyQuote (quote number) (replacement)\n!removeQuote (quote number)');
     }
 
     if (message.content === '!blackjack') {
@@ -170,7 +175,10 @@ bot.on('message', message => {
         }
     }
     if (regEightBall.test(message.content)){
-        message.channel.sendMessage(eightBall[Math.floor(Math.random()*eightBall.length)]);
+        if(goingToDie.test(message.content)){
+            message.channel.sendMessage("Everyone will die some day.");
+        } else
+            message.channel.sendMessage(eightBall[Math.floor(Math.random()*eightBall.length)]);
     }
     if (addQuote.test(message.content)){
         quotes.push(message.content.slice(10));
@@ -178,13 +186,29 @@ bot.on('message', message => {
             if(err)
                 console.log(err);
         });
+        message.channel.sendMessage("Quote number "+(quotes.length-1)+" has been added");
     }
-    if (message.content === '!quote') {
-        message.channel.sendMessage("\""+quotes[Math.floor(Math.random()*quotes.length)]+"\"");
+    if(quoteCommand.test(message.content)){
+        if(findQuote.test(message.content)){
+            if(quotes[message.content.slice(7)]){
+                message.channel.sendMessage("\""+quotes[message.content.slice(7)]+"\"");
+            } else {
+                var rude = Math.floor(Math.random()*101);
+                if(rude === (42 || 57 || 98)){
+                    message.channel.sendMessage("There is no quote with that number, dumbass");
+                } else {
+                    message.channel.sendMessage("There is no quote with that number");
+                }
+            }
+        } else {
+            message.channel.sendMessage("\""+quotes[Math.floor(Math.random()*quotes.length)]+"\"");
+        }
     }
-    if(findQuote.test(message.content)){
-        if(quotes[message.content.slice(7)]){
-            message.channel.sendMessage("\""+quotes[message.content.slice(7)]+"\"");
+    if(modifyQuote.test(message.content)){
+        var quoteNumber = regQuoteNumber.exec(message.content);
+        if(quotes[quoteNumber]){
+            quotes[quoteNumber] = message.content.slice(14+quoteNumber.length);
+            message.channel.sendMessage("Quote "+quoteNumber+" modified successfully");
         } else {
             var rude = Math.floor(Math.random()*101);
             if(rude === (42 || 57 || 98)){
@@ -192,6 +216,24 @@ bot.on('message', message => {
             } else {
                 message.channel.sendMessage("There is no quote with that number");
             }
+        }
+    }
+    if(removeQuote.test(message.content)){
+        if(message.author.id == 145650335170428928){
+            var quoteNumber = regQuoteNumber.exec(message.content);
+            if(quotes[quoteNumber]){
+                quotes.splice(quoteNumber, 1);
+                message.channel.sendMessage("Quote "+quoteNumber+" has been removed")
+            } else {
+                var rude = Math.floor(Math.random()*101);
+                if(rude === (42 || 57 || 98)){
+                    message.channel.sendMessage("There is no quote with that number, dumbass");
+                } else {
+                    message.channel.sendMessage("There is no quote with that number");
+                }
+            }
+        } else {
+            message.channel.sendMessage("Only Ben gets to do that, you'd probably fuck it up");
         }
     }
 });
