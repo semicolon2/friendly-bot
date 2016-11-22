@@ -96,7 +96,7 @@ bot.on('message', message => {
 
     //help message, lists most commands, vaguely
     if(message.content === '!help') {
-        message.channel.sendMessage('!help\n!cory\n!cruel\n!succ\n!blackjack\n!ohshit\n!wah\n!uptown\n!yee\n!addquote (quote here)\n!quote\n!quote (number for quote)\n!modifyQuote (quote number) (replacement)\n!removeQuote (quote number)');
+        message.channel.sendMessage('!help\n!cory\n!cruel\n!succ\n!blackjack\n!ohshit\n!wah\n!uptown\n!yee\n!bees\n!ooh\n!addquote (quote here)\n!quote\n!quote (number for quote)\n!modifyQuote (quote number) (replacement)\n!removeQuote (quote number)');
     }
 
     if (message.content === '!blackjack') {
@@ -176,6 +176,24 @@ bot.on('message', message => {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
                 playSound(connection, 'cruel.wav');
+            });
+        } else {
+            return;
+        }
+    }
+    if (message.content === '!bees') {
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                playSound(connection, 'Dr_Bees.wav');
+            });
+        } else {
+            return;
+        }
+    }
+    if (message.content === '!ooh') {
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                playSound(connection, 'ooooh.wav');
             });
         } else {
             return;
