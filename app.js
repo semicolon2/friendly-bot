@@ -85,6 +85,13 @@ function playSound(connection, fileName){
     }
 }
 
+function saveQuotes(){
+    jsonFile.writeFile('quotes.json', {quotes: quotes}, function(err){
+        if(err)
+            console.log(err);
+    });
+}
+
 bot.on('message', message => {
 
     //help message, lists most commands, vaguely
@@ -182,10 +189,7 @@ bot.on('message', message => {
     }
     if (addQuote.test(message.content)){
         quotes.push(message.content.slice(10));
-        jsonFile.writeFile('quotes.json', {quotes: quotes}, function(err){
-            if(err)
-                console.log(err);
-        });
+        saveQuotes();
         message.channel.sendMessage("Quote number "+(quotes.length-1)+" has been added");
     }
     if(quoteCommand.test(message.content)){
@@ -208,6 +212,7 @@ bot.on('message', message => {
         var quoteNumber = regQuoteNumber.exec(message.content);
         if(quotes[quoteNumber]){
             quotes[quoteNumber] = message.content.slice(14+quoteNumber.length);
+            saveQuotes();
             message.channel.sendMessage("Quote "+quoteNumber+" modified successfully");
         } else {
             var rude = Math.floor(Math.random()*101);
@@ -223,6 +228,7 @@ bot.on('message', message => {
             var quoteNumber = regQuoteNumber.exec(message.content);
             if(quotes[quoteNumber]){
                 quotes.splice(quoteNumber, 1);
+                saveQuotes();
                 message.channel.sendMessage("Quote "+quoteNumber+" has been removed")
             } else {
                 var rude = Math.floor(Math.random()*101);
