@@ -39,6 +39,7 @@ var areYouGay = /are you gay/i;
 var lesbian = /^lesbian\?/i;
 var lesbians = /^lesbians\?/i;
 var bread = /^bread makes you fat/i;
+var goodnight = /^goodnight, bot/i;
 
 var quotes = [];
 var soundQueue = [];
@@ -214,6 +215,8 @@ bot.on('message', message => {
             message.channel.sendMessage("I'm talking about love, Scott!");
         } else if(bread.test(message.content.slice(7))){
             message.channel.sendMessage("BREAD MAKES YOU FAT?!");
+        } else if(goodnight.test(message.content.slice(7))){
+            message.channel.sendMessage("Goodnight!");
         } else
             message.channel.sendMessage(eightBall[Math.floor(Math.random()*eightBall.length)]);
     }
