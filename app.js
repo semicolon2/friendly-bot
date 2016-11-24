@@ -160,13 +160,14 @@ bot.on('message', message => {
         }
     }
     if (message.content === '!yeefull') {
-        if(message.member.voiceChannel){
-            message.member.voiceChannel.join().then(connection =>{
-                playSound(connection, 'yeefull.mp3');
-            });
-        } else {
-            return;
-        }
+        message.channel.sendMessage("no");
+        // if(message.member.voiceChannel){
+        //     message.member.voiceChannel.join().then(connection =>{
+        //         playSound(connection, 'yeefull.mp3');
+        //     });
+        // } else {
+        //     return;
+        // }
     }
     if (message.content === '!cory') {
         if(message.member.voiceChannel){
