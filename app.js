@@ -38,6 +38,7 @@ var goingToDie = /going to die/i;
 var areYouGay = /are you gay/i;
 var lesbian = /^lesbian\?/i;
 var lesbians = /^lesbians\?/i;
+var bread = /^bread makes you fat/i;
 
 var quotes = [];
 var soundQueue = [];
@@ -207,10 +208,12 @@ bot.on('message', message => {
             message.channel.sendMessage("Everyone will die some day.");
         } else if(areYouGay.test(message.content)){
             message.channel.sendMessage("I couldn't stop thinking about my stupid ex girlfriend!");
-        }  else if(lesbian.test(message.content.slice(7))){
+        } else if(lesbian.test(message.content.slice(7))){
             message.channel.sendMessage("The other L word.");
-        }   else if(lesbians.test(message.content.slice(7))){
+        } else if(lesbians.test(message.content.slice(7))){
             message.channel.sendMessage("I'm talking about love, Scott!");
+        } else if(bread.test(message.content.slice(7))){
+            message.channel.sendMessage("BREAD MAKES YOU FAT?!");
         } else
             message.channel.sendMessage(eightBall[Math.floor(Math.random()*eightBall.length)]);
     }
@@ -238,7 +241,8 @@ bot.on('message', message => {
     if(modifyQuote.test(message.content)){
         var quoteNumber = regQuoteNumber.exec(message.content);
         if(!message.content.slice(14+quoteNumber.length)){
-            nessage.channel.sendMessage("Don't make an empty quote, asshole");
+            message.channel.sendMessage("Don't make an empty quote, asshole");
+            return;
         }
         if(quotes[quoteNumber]){
             quotes[quoteNumber] = message.content.slice(14+quoteNumber.length);
