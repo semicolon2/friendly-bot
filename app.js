@@ -21,7 +21,7 @@ app.get('/', function (req, res) {
 
 //================bot & bot logic===============================================
 const bot = new Discord.Client();
-bot.login(env.token);
+bot.login(process.env.TOKEN);
 bot.on('ready', ()=>{
     console.log('bot is ready!');
 });
@@ -282,6 +282,6 @@ bot.on('message', message => {
     }
 });
 
-app.listen(8080, function () {
+app.listen(80, function () {
     console.log('listening on port 8080');
 });
