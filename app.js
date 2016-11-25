@@ -15,6 +15,9 @@ setInterval(function() {
 }, 150000);
 
 //================for displaying a page with discord request===================
+app.set('port', (process.env.PORT || 5000));
+
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(bodyParser.json());
@@ -288,6 +291,6 @@ bot.on('message', message => {
     }
 });
 
-app.listen(8080, function () {
-    console.log('listening on port 8080');
+app.listen(app.get('port'), function () {
+    console.log('listening on port ', app.get('port'));
 });
