@@ -12,7 +12,7 @@ const jsonFile = require('jsonfile');
 var http = require("http");
 setInterval(function() {
     http.get("http://<your app name>.herokuapp.com");
-}, 150000); 
+}, 150000);
 
 //================for displaying a page with discord request===================
 app.set('views', path.join(__dirname, 'views'));
@@ -288,6 +288,6 @@ bot.on('message', message => {
     }
 });
 
-app.listen(80, function () {
+app.listen(8080, function () {
     console.log('listening on port 8080');
 });
