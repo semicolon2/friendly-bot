@@ -8,6 +8,12 @@ const Discord = require('discord.js');
 var opus = require('opusscript');
 const jsonFile = require('jsonfile');
 
+//keep alive
+var http = require("http");
+setInterval(function() {
+    http.get("http://<your app name>.herokuapp.com");
+}, 150000); 
+
 //================for displaying a page with discord request===================
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
