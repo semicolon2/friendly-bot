@@ -11,7 +11,7 @@ const jsonFile = require('jsonfile');
 //keep alive
 var http = require("http");
 setInterval(function() {
-    http.get("http://<your app name>.herokuapp.com");
+    http.get("http://whispering-cove-88085.herokuapp.com");
 }, 150000);
 
 //================for displaying a page with discord request===================
