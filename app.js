@@ -30,7 +30,7 @@ app.get('/', function (req, res) {
 
 //================bot & bot logic===============================================
 const bot = new Discord.Client();
-bot.login(process.env.TOKEN);
+bot.login(process.env.TOKEN || env.token);
 bot.on('ready', ()=>{
     console.log('bot is ready!');
 });
@@ -49,6 +49,7 @@ var lesbian = /^lesbian\?/i;
 var lesbians = /^lesbians\?/i;
 var bread = /^bread makes you fat/i;
 var goodnight = /^goodnight, bot/i;
+var heTries = /^and he tries/i;
 
 var quotes = [];
 var soundQueue = [];
@@ -227,6 +228,8 @@ bot.on('message', message => {
             message.channel.sendMessage("BREAD MAKES YOU FAT?!");
         } else if(goodnight.test(message.content.slice(7))){
             message.channel.sendMessage("Goodnight!");
+        } else if(heTries.test(message.content.slice(7))){
+            message.channel.sendMessage("oh mY GOD do I try");
         } else
             message.channel.sendMessage(eightBall[Math.floor(Math.random()*eightBall.length)]);
     }
@@ -290,7 +293,7 @@ bot.on('message', message => {
         }
     }
 });
- 
+
 app.listen(app.get('port'), function () {
     console.log('listening on port ', app.get('port'));
 });
