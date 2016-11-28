@@ -215,6 +215,15 @@ bot.on('message', message => {
             return;
         }
     }
+    if (message.content === '!myah') {
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                playSound(connection, 'Myah.mp3');
+            });
+        } else {
+            return;
+        }
+    }
     if (regEightBall.test(message.content)){
         if(goingToDie.test(message.content)){
             message.channel.sendMessage("Everyone will die some day.");
