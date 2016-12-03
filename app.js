@@ -8,7 +8,7 @@ const Discord = require('discord.js');
 var opus = require('opusscript');
 const jsonFile = require('jsonfile');
 const captionBot = require('captionbot');
-const validUrl = require('valid-url').isUrl;
+const validUrl = require('valid-url').isUri;
 
 //keep alive
 var http = require("http");
