@@ -228,7 +228,7 @@ bot.on('message', message => {
     }
 
     if(validUrl(message.content)){
-        captionBot('http://imgur.com/B7a15F5.jpg').then(caption=>{
+        captionBot(message.content).then(caption=>{
             message.channel.sendMessage(caption);
         });
     }
