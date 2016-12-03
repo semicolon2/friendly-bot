@@ -7,8 +7,6 @@ const fs = require('fs');
 const Discord = require('discord.js');
 var opus = require('opusscript');
 const jsonFile = require('jsonfile');
-const captionBot = require('captionbot');
-const validUrl = require('valid-url').isUri;
 
 //keep alive
 var http = require("http");
@@ -227,11 +225,6 @@ bot.on('message', message => {
         }
     }
 
-    if(validUrl(message.content)){
-        captionBot(message.content).then(caption=>{
-            message.channel.sendMessage(caption);
-        });
-    }
 
     if (regEightBall.test(message.content)){
         if(goingToDie.test(message.content)){
