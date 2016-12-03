@@ -7,7 +7,7 @@ const fs = require('fs');
 const Discord = require('discord.js');
 var opus = require('opusscript');
 const jsonFile = require('jsonfile');
-const captionBot = require('cationbot');
+const captionBot = require('captionbot');
 const validUrl = require('valid-url').isUrl;
 
 //keep alive
