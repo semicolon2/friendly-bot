@@ -7,6 +7,8 @@ const fs = require('fs');
 const Discord = require('discord.js');
 var opus = require('opusscript');
 const jsonFile = require('jsonfile');
+const captionBot = require('cationbot');
+const validUrl = require('valid-url').isUrl;
 
 //keep alive
 var http = require("http");
@@ -224,6 +226,13 @@ bot.on('message', message => {
             return;
         }
     }
+
+    if(validUrl(message.content)){
+        captionBot('http://imgur.com/B7a15F5.jpg').then(caption=>{
+            message.channel.sendMessage(caption);
+        });
+    }
+
     if (regEightBall.test(message.content)){
         if(goingToDie.test(message.content)){
             message.channel.sendMessage("Everyone will die some day.");
