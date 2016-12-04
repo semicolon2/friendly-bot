@@ -10,13 +10,14 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
-    "captionbot": "^1.0.2",
     "discord.js": "^10.0.1",
     "express": "^4.14.0",
     "fs": "0.0.1-security",
+    "got": "^6.6.3",
     "jsonfile": "^2.4.0",
     "lame": "^1.2.4",
     "opusscript": "0.0.1",
-    "pug": "^2.0.0-beta6"
+    "pug": "^2.0.0-beta6",
+    "valid-url": "^1.0.9"
   }
 }

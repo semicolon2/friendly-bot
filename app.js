@@ -7,6 +7,8 @@ const fs = require('fs');
 const Discord = require('discord.js');
 var opus = require('opusscript');
 const jsonFile = require('jsonfile');
+const got = require('got');
+const validUrl = require('valid-url').isUri;
 
 //keep alive
 var http = require("http");
@@ -104,6 +106,29 @@ function saveQuotes(){
     jsonFile.writeFile('quotes.json', {quotes: quotes}, function(err){
         if(err)
             console.log(err);
+    });
+}
+
+function captionBot(link){
+    got('https://www.captionbot.ai/api/init', {json: true}).then((res)=>{
+        const conversationId = response.body;
+        const cookie = response.headers['set-cookie'][0].split(';')[0];
+
+        const options = {
+            body: {
+                conversationId: conversationId,
+                waterMark: '',
+                userMessage: imageUrl
+            },
+            headers: {
+                cookie: cookie
+            },
+            json: true
+        };
+
+        got('https://www.captionbot.ai/api/message', options).then((res)=>{
+            return(JSON.parse(response.body).UserMessage || "").trim();
+        });
     });
 }
 
@@ -225,6 +250,9 @@ bot.on('message', message => {
         }
     }
 
+    if(validUrl(message.content)){
+        message.channel.sendMessage(captionBot(message.content));
+    }
 
     if (regEightBall.test(message.content)){
         if(goingToDie.test(message.content)){
