@@ -224,6 +224,24 @@ bot.on('message', message => {
             return;
         }
     }
+    if (message.content === '!time') {
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                playSound(connection, 'timetostop.wav');
+            });
+        } else {
+            return;
+        }
+    }
+    if (message.content === '!where') {
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                playSound(connection, 'yourparents.wav');
+            });
+        } else {
+            return;
+        }
+    }
 
     if (regEightBall.test(message.content)){
         if(goingToDie.test(message.content)){
