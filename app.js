@@ -218,7 +218,7 @@ bot.on('message', message => {
     if (message.content === '!myah') {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
-                playSound(connection, 'Myah.wav.mp3');
+                playSound(connection, 'myah.wav');
             });
         } else {
             return;
