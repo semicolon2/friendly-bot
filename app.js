@@ -29,7 +29,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/quotes', function (req, res) {
-    res.sendFile('../quotes.json');
+    res.sendFile((path.join(__dirname, 'quotes.json')));
 });
 
 //================bot & bot logic===============================================
