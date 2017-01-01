@@ -28,6 +28,10 @@ app.get('/', function (req, res) {
    res.render('index', {title: 'Friendly-bot'});
 });
 
+app.get('/quotes', function (req, res) {
+    res.sendFile('quotes.json');
+});
+
 //================bot & bot logic===============================================
 const bot = new Discord.Client();
 bot.login(process.env.TOKEN || env.token);
@@ -247,6 +251,16 @@ bot.on('message', message => {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
                 playSound(connection, 'wake.wav');
+            });
+        } else {
+            return;
+        }
+    }
+
+    if (message.content === '!bee') {
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                playSound(connection, 'bee.wav');
             });
         } else {
             return;
