@@ -267,6 +267,16 @@ bot.on('message', message => {
         }
     }
 
+    if (message.content === '!easymode') {
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                playSound(connection, 'easymode.mp3');
+            });
+        } else {
+            return;
+        }
+    }
+
     if (message.content === '!sergei') {
         message.channel.sendMessage("https://gifsound.com/?gif=i.imgur.com/HfbMsaE.gif&v=dXYs5GsnMbI&s=23");
     }
