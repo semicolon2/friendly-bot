@@ -12,7 +12,7 @@ const jsonFile = require('jsonfile');
 var http = require("http");
 setInterval(function() {
     http.get("http://whispering-cove-88085.herokuapp.com");
-}, 3000000);
+}, 1800000);
 
 //================for displaying a page with discord request===================
 app.set('port', (process.env.PORT || 5000));
