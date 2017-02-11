@@ -60,6 +60,7 @@ var lesbians = /^lesbians\?/i;
 var bread = /^bread makes you fat/i;
 var goodnight = /^goodnight, bot/i;
 var heTries = /^and he tries/i;
+var coffeeCheck = /coffee/i;
 
 var soundQueue = [];
 
@@ -371,6 +372,8 @@ bot.on('message', message => {
             message.channel.sendMessage("Goodnight!");
         } else if(heTries.test(message.content.slice(7))){
             message.channel.sendMessage("oh mY GOD do I try");
+        } else if(coffeeCheck.test(message.content.slice(7))){
+            message.channel.sendMessage(eightBall[Math.floor(Math.random()*8)]);
         } else
             message.channel.sendMessage(eightBall[Math.floor(Math.random()*eightBall.length)]);
     }
