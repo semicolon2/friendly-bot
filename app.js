@@ -61,6 +61,7 @@ var bread = /^bread makes you fat/i;
 var goodnight = /^goodnight, bot/i;
 var heTries = /^and he tries/i;
 var coffeeCheck = /coffee/i;
+var vagueCheck = / thing/i;
 
 var soundQueue = [];
 
@@ -374,6 +375,8 @@ bot.on('message', message => {
             message.channel.sendMessage("oh mY GOD do I try");
         } else if(coffeeCheck.test(message.content.slice(7))){
             message.channel.sendMessage(eightBall[Math.floor(Math.random()*8)]);
+        } else if (vagueCheck.test(message.content.slice(7))) {
+            message.channel.sendMessage("plz, I can't read minds");
         } else
             message.channel.sendMessage(eightBall[Math.floor(Math.random()*eightBall.length)]);
     }
