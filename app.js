@@ -381,7 +381,7 @@ bot.on('message', message => {
         } else if (vagueCheck.test(content)) {
             message.channel.sendMessage("plz, I can't read minds");
         } else if (valentine.test(content)) {
-            message.channel.sendmessage(eightBall[Math.floor(Math.random()*8)]);
+            message.channel.sendMessage(eightBall[Math.floor(Math.random()*8)]);
         } else
             message.channel.sendMessage(eightBall[Math.floor(Math.random()*eightBall.length)]);
     }
