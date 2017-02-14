@@ -62,6 +62,7 @@ var goodnight = /^goodnight, bot/i;
 var heTries = /^and he tries/i;
 var coffeeCheck = /coffee/i;
 var vagueCheck = / thing/i;
+var valentine = / my valentine/i;
 
 var soundQueue = [];
 
@@ -359,24 +360,28 @@ bot.on('message', message => {
     }
 
     if (regEightBall.test(message.content)){
+        var content = message.content.slice(7);
+
         if(goingToDie.test(message.content)){
             message.channel.sendMessage("Everyone will die some day.");
         } else if(areYouGay.test(message.content)){
             message.channel.sendMessage("I couldn't stop thinking about my stupid ex girlfriend!");
-        } else if(lesbian.test(message.content.slice(7))){
+        } else if(lesbian.test(content)){
             message.channel.sendMessage("The other L word.");
-        } else if(lesbians.test(message.content.slice(7))){
+        } else if(lesbians.test(content)){
             message.channel.sendMessage("I'm talking about love, Scott!");
-        } else if(bread.test(message.content.slice(7))){
+        } else if(bread.test(content)){
             message.channel.sendMessage("BREAD MAKES YOU FAT?!");
-        } else if(goodnight.test(message.content.slice(7))){
+        } else if(goodnight.test(content)){
             message.channel.sendMessage("Goodnight!");
-        } else if(heTries.test(message.content.slice(7))){
+        } else if(heTries.test(content)){
             message.channel.sendMessage("oh mY GOD do I try");
-        } else if(coffeeCheck.test(message.content.slice(7))){
+        } else if(coffeeCheck.test(content)){
             message.channel.sendMessage(eightBall[Math.floor(Math.random()*8)]);
-        } else if (vagueCheck.test(message.content.slice(7))) {
+        } else if (vagueCheck.test(content)) {
             message.channel.sendMessage("plz, I can't read minds");
+        } else if (valentine.test(content)) {
+            message.channel.sendmessage(eightBall[Math.floor(Math.random()*8)]);
         } else
             message.channel.sendMessage(eightBall[Math.floor(Math.random()*eightBall.length)]);
     }
