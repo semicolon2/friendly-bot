@@ -223,6 +223,9 @@ bot.on('message', message => {
             return;
         }
     }
+    if (message.content === '!ducc') {
+        message.channel.sendMessage("https://cdn.discordapp.com/attachments/211938490995179521/281669230976565249/f0db1b8cd9d0ed7a54e571dc340e8ec4e609d1fee854c2fecdbf3bb63e3f338c_1.jpg");
+    }
     if (message.content === '!wah') {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
