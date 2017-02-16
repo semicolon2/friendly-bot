@@ -365,7 +365,9 @@ bot.on('message', message => {
     if (regEightBall.test(message.content)){
         var content = message.content.slice(7);
 
-        if(goingToDie.test(message.content)){
+        if(content === ""){
+            message.channel.sendMessage("  ");
+        } else if(goingToDie.test(message.content)){
             message.channel.sendMessage("Everyone will die some day.");
         } else if(areYouGay.test(message.content)){
             message.channel.sendMessage("I couldn't stop thinking about my stupid ex girlfriend!");
@@ -381,7 +383,7 @@ bot.on('message', message => {
             message.channel.sendMessage("oh mY GOD do I try");
         } else if(coffeeCheck.test(content)){
             message.channel.sendMessage(eightBall[Math.floor(Math.random()*8)]);
-        } else if (vagueCheck.test(content)) {
+        } else if (vagueCheck.test(message.content.slice(6))) {
             message.channel.sendMessage("plz, I can't read minds");
         } else if (valentine.test(content)) {
             message.channel.sendMessage(eightBall[Math.floor(Math.random()*8)]);
