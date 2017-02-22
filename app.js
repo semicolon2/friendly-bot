@@ -200,6 +200,8 @@ bot.on('message', message => {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
                 playSound(connection, 'blackjack.wav');
+            }, error =>{
+                console.error(error);
             });
         } else {
             return;
@@ -209,6 +211,8 @@ bot.on('message', message => {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
                 playSound(connection, 'oh_shit.wav');
+            }, error =>{
+                console.error(error);
             });
         } else {
             return;
@@ -218,6 +222,8 @@ bot.on('message', message => {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
                 playSound(connection, 'succ.wav');
+            }, error =>{
+                console.error(error);
             });
         } else {
             return;
@@ -231,6 +237,8 @@ bot.on('message', message => {
             message.member.voiceChannel.join().then(connection =>{
                 var wah = "waluigi/wah"+Math.floor((Math.random()*12)+1)+".wav";
                 playSound(connection, wah);
+            }, error =>{
+                console.error(error);
             });
         } else {
             return;
@@ -240,6 +248,8 @@ bot.on('message', message => {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
                 playSound(connection, 'wahh.wav');
+            }, error =>{
+                console.error(error);
             });
         } else {
             return;
@@ -249,6 +259,8 @@ bot.on('message', message => {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
                 playSound(connection, 'yee.wav');
+            }, error =>{
+                console.error(error);
             });
         } else {
             return;
@@ -268,6 +280,8 @@ bot.on('message', message => {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
                 playSound(connection, 'cory.wav');
+            }, error =>{
+                console.error(error);
             });
         } else {
             return;
@@ -277,6 +291,8 @@ bot.on('message', message => {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
                 playSound(connection, 'cruel.wav');
+            }, error =>{
+                console.error(error);
             });
         } else {
             return;
@@ -286,6 +302,8 @@ bot.on('message', message => {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
                 playSound(connection, 'Dr_Bees.wav');
+            }, error =>{
+                console.error(error);
             });
         } else {
             return;
@@ -295,6 +313,8 @@ bot.on('message', message => {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
                 playSound(connection, 'ooooh.wav');
+            }, error =>{
+                console.error(error);
             });
         } else {
             return;
@@ -304,6 +324,8 @@ bot.on('message', message => {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
                 playSound(connection, 'myah.wav');
+            }, error =>{
+                console.error(error);
             });
         } else {
             return;
@@ -313,6 +335,8 @@ bot.on('message', message => {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
                 playSound(connection, 'timetostop.wav');
+            }, error =>{
+                console.error(error);
             });
         } else {
             return;
@@ -322,6 +346,8 @@ bot.on('message', message => {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
                 playSound(connection, 'yourparents.wav');
+            }, error =>{
+                console.error(error);
             });
         } else {
             return;
@@ -332,6 +358,8 @@ bot.on('message', message => {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
                 playSound(connection, 'wake.wav');
+            }, error =>{
+                console.error(error);
             });
         } else {
             return;
@@ -342,6 +370,8 @@ bot.on('message', message => {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
                 playSound(connection, 'bee.wav');
+            }, error =>{
+                console.error(error);
             });
         } else {
             return;
@@ -352,6 +382,8 @@ bot.on('message', message => {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
                 playSound(connection, 'easymode.mp3');
+            }, error =>{
+                console.error(error);
             });
         } else {
             return;
@@ -387,6 +419,8 @@ bot.on('message', message => {
             message.channel.sendMessage("plz, I can't read minds");
         } else if (valentine.test(content)) {
             message.channel.sendMessage(eightBall[Math.floor(Math.random()*8)]);
+        // } else if (message.author.id === 158084776509571074) {
+        //     message.channel.sendMessage(eightBall[Math.floor(Math.random()*8)]);
         } else
             message.channel.sendMessage(eightBall[Math.floor(Math.random()*eightBall.length)]);
     }
