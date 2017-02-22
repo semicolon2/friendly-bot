@@ -64,8 +64,6 @@ var coffeeCheck = /coffee/i;
 var vagueCheck = / thing/i;
 var valentine = / my valentine/i;
 
-var soundQueue = [];
-
 var eightBall = [
     "It is certain",
     "It is decidedly so",
@@ -89,7 +87,10 @@ var eightBall = [
     "Very doubtful"
 ];
 
+var soundQueue = [];
+
 function playSound(connection, fileName){
+
     if(connection.speaking == true){
         soundQueue.push({connection: connection, fileName: fileName});
     } else {
@@ -97,8 +98,13 @@ function playSound(connection, fileName){
             if (soundQueue.length == 0){
                 connection.disconnect();
             } else {
-                nextSound = soundQueue[0];
-                soundQueue.splice(0, 1);
+                if(soundQueue.length > 5){
+                    nextSound = {"connection": soundQueue[0].connection, "fileName": 'sheep.mp3'};
+                    soundQueue = [];
+                } else {
+                    nextSound = soundQueue[0];
+                    soundQueue.splice(0, 1);
+                }
                 playSound(nextSound.connection, nextSound.fileName);
             }
         });
