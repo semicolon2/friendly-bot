@@ -396,6 +396,19 @@ bot.on('message', message => {
         }
     }
 
+    if (message.content === '!lutebear') {
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                playSound(connection, 'lute.wav');
+            }, error =>{
+                console.error(error);
+            });
+        } else {
+            return;
+        }
+    }
+
+
     if (message.content === '!sergei') {
         message.channel.sendMessage("https://gifsound.com/?gif=i.imgur.com/HfbMsaE.gif&v=dXYs5GsnMbI&s=23");
     }
