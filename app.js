@@ -87,6 +87,7 @@ var eightBall = [
     "Very doubtful"
 ];
 
+var grounded = false;
 var soundQueue = [];
 
 function playSound(connection, fileName){
@@ -413,7 +414,19 @@ bot.on('message', message => {
         message.channel.sendMessage("https://gifsound.com/?gif=i.imgur.com/HfbMsaE.gif&v=dXYs5GsnMbI&s=23");
     }
 
+    if(message.content === '!ground'){
+        grounded = true;
+    }
+    if(message.content === '!forgive'){
+        grounded = false;
+    }
+
     if (regEightBall.test(message.content)){
+        if(grounded){
+            message.channel.sendMessage("I've been a bad bot & got grounded :C");
+            return;
+        }
+
         var content = message.content.slice(7);
 
         if(content === ""){
