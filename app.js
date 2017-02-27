@@ -415,9 +415,11 @@ bot.on('message', message => {
     }
 
     if(message.content === '!ground'){
+        message.channel.send("D:");
         grounded = true;
     }
     if(message.content === '!forgive'){
+        message.channel.send(":D");
         grounded = false;
     }
 
