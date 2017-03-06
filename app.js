@@ -409,6 +409,18 @@ bot.on('message', message => {
         }
     }
 
+    if (message.content === '!mhmm') {
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                var mhmm = "mhmm/Mhmm_"+Math.floor((Math.random()*4)+1)+".wav";
+                playSound(connection, mhmm);
+            }, error =>{
+                console.error(error);
+            });
+        } else {
+            return;
+        }
+    }
 
     if (message.content === '!sergei') {
         message.channel.sendMessage("https://gifsound.com/?gif=i.imgur.com/HfbMsaE.gif&v=dXYs5GsnMbI&s=23");
