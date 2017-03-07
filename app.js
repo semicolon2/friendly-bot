@@ -409,6 +409,18 @@ bot.on('message', message => {
         }
     }
 
+    if (message.content === '!bigboy') {
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                playSound(connection, 'bigboy.wav');
+            }, error =>{
+                console.error(error);
+            });
+        } else {
+            return;
+        }
+    }
+
     if (message.content === '!mhmm') {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
