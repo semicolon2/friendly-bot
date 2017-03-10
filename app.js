@@ -112,12 +112,7 @@ function playSound(connection, fileName){
     }
 }
 
-// function saveQuotes(){
-//     jsonFile.writeFile('quotes.json', {quotes: quotes}, function(err){
-//         if(err)
-//             console.log(err);
-//     });
-// }
+//quote controls
 
 function saveQuote(quote, guildID){
     return new Promise(function (fulfill, reject){
@@ -413,6 +408,18 @@ bot.on('message', message => {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
                 playSound(connection, 'bigboy.wav');
+            }, error =>{
+                console.error(error);
+            });
+        } else {
+            return;
+        }
+    }
+
+    if (message.content === '!raygay') {
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                playSound(connection, 'imgay.mp3');
             }, error =>{
                 console.error(error);
             });
