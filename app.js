@@ -446,7 +446,7 @@ bot.on('message', message => {
     if (message.content === '!mhmm') {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
-                var mhmm = "mhmm/Mhmm_"+Math.floor((Math.random()*4)+1)+".wav";
+                var mhmm = "nick/Mhmm"+Math.floor((Math.random()*15))+".wav";
                 playSound(connection, mhmm);
             }, error =>{
                 console.error(error);
