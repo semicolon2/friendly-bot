@@ -220,6 +220,17 @@ bot.on('message', message => {
             return;
         }
     }
+    if (message.content === '!smash') {
+        if(message.member.voiceChannel){
+            message.member.voiceChannel.join().then(connection =>{
+                playSound(connection, 'smash.wav');
+            }, error =>{
+                console.error(error);
+            });
+        } else {
+            return;
+        }
+    }
     if (message.content === '!succ') {
         if(message.member.voiceChannel){
             message.member.voiceChannel.join().then(connection =>{
