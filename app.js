@@ -63,6 +63,7 @@ var heTries = /^and he tries/i;
 var coffeeCheck = /coffee/i;
 var vagueCheck = / thing/i;
 var valentine = / my valentine/i;
+var chill = / ?you chill/i;
 
 var eightBall = [
     "It is certain",
@@ -479,6 +480,10 @@ bot.on('message', message => {
     if (message.content === '!forgive') {
         message.channel.sendMessage(":D");
         grounded = false;
+    }
+
+    if (chill.test(message.content)) {
+        message.channel.sendMessage("No you chill!");
     }
 
     if (regEightBall.test(message.content)) {
