@@ -63,7 +63,7 @@ var heTries = /^and he tries/i;
 var coffeeCheck = /coffee/i;
 var vagueCheck = / thing/i;
 var valentine = / my valentine/i;
-var chill = / ?you chill/i;
+var chill = / ?just chill/i;
 
 var eightBall = [
     "It is certain",
