@@ -469,6 +469,11 @@ bot.on('message', message => {
         }
     }
 
+    if (chill.test(message.content)) {
+        message.channel.sendMessage("No you chill!");
+        return;
+    }
+
     if (message.content === '!sergei') {
         message.channel.sendMessage("https://gifsound.com/?gif=i.imgur.com/HfbMsaE.gif&v=dXYs5GsnMbI&s=23");
     }
@@ -482,9 +487,6 @@ bot.on('message', message => {
         grounded = false;
     }
 
-    if (chill.test(message.content)) {
-        message.channel.sendMessage("No you chill!");
-    }
 
     if (regEightBall.test(message.content)) {
         if (grounded) {
