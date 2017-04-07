@@ -466,7 +466,7 @@ bot.on('message', message => {
         }
     }
 
-    if (message.content === '!obama') {
+    if (message.content === '!pre') {
         if (message.member.voiceChannel) {
             message.member.voiceChannel.join().then(connection => {
                 playSound(connection, 'obama.wav');
