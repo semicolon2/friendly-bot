@@ -196,17 +196,6 @@ bot.on('message', message => {
         message.channel.sendMessage('!help\n!sergei\n!cory\n!cruel\n!succ\n!blackjack\n!ohshit\n!wah\n!uptown\n!yee\n!bees\n!ooh\n!time\n!where\n!addquote (quote here)\n!quote\n!quote (number for quote)\n!modifyQuote (quote number) (replacement)\n!removeQuote (quote number)');
     }
 
-    if (message.content === '!blackjack') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'blackjack.wav');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
     if (message.content === '!ohshit') {
         if (message.member.voiceChannel) {
             message.member.voiceChannel.join().then(connection => {
@@ -454,6 +443,18 @@ bot.on('message', message => {
         }
     }
 
+    if (message.content === '!obama') {
+        if (message.member.voiceChannel) {
+            message.member.voiceChannel.join().then(connection => {
+                playSound(connection, 'gonnapre.wav');
+            }, error => {
+                console.error(error);
+            });
+        } else {
+            return;
+        }
+    }
+
     if (message.content === '!yes') {
         if (message.member.voiceChannel) {
             message.member.voiceChannel.join().then(connection => {
@@ -466,17 +467,6 @@ bot.on('message', message => {
         }
     }
 
-    if (message.content === '!pre') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'obama.wav');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
 
     if (chill.test(message.content)) {
         message.channel.sendMessage("No you chill!");
