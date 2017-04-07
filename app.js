@@ -12,9 +12,6 @@ const Promise = require('promise');
 
 //keep alive
 var http = require("http");
-setInterval(function() {
-    http.get("http://whispering-cove-88085.herokuapp.com");
-}, 1800000);
 
 //================for displaying a page with discord request===================
 app.set('port', (process.env.PORT || 5000));
