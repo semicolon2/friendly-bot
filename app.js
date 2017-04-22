@@ -443,10 +443,10 @@ bot.on('message', message => {
         }
     }
 
-    if (message.content === '!obama') {
+    if (message.content === '!frick') {
         if (message.member.voiceChannel) {
             message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'gonnapre.wav');
+                playSound(connection, 'frick.wav');
             }, error => {
                 console.error(error);
             });
