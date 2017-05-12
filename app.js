@@ -467,6 +467,30 @@ bot.on('message', message => {
         }
     }
 
+    if (message.content === '!itsben') {
+        if (message.member.voiceChannel) {
+            message.member.voiceChannel.join().then(connection => {
+                playSound(connection, 'itsben.wav');
+            }, error => {
+                console.error(error);
+            });
+        } else {
+            return;
+        }
+    }
+
+    if (message.content === '!dayman') {
+        if (message.member.voiceChannel) {
+            message.member.voiceChannel.join().then(connection => {
+                playSound(connection, 'dayman.wav');
+            }, error => {
+                console.error(error);
+            });
+        } else {
+            return;
+        }
+    }
+
 
     if (chill.test(message.content)) {
         message.channel.sendMessage("No you chill!");
