@@ -61,6 +61,7 @@ var coffeeCheck = /coffee/i;
 var vagueCheck = / thing/i;
 var valentine = / my valentine/i;
 var chill = / ?just chill/i;
+var regMhmm = /^!mhmm/i;
 
 var eightBall = [
     "It is certain",
@@ -430,16 +431,29 @@ bot.on('message', message => {
         }
     }
 
-    if (message.content === '!mhmm') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                var mhmm = "nick/Mhmm" + Math.floor((Math.random() * 15)) + ".wav";
-                playSound(connection, mhmm);
-            }, error => {
-                console.error(error);
-            });
+    if (regMhmm.test(message.content)) {
+        if (regQuoteNumber.test(message.content)) {
+            if (message.member.voiceChannel) {
+                message.member.voiceChannel.join().then(connection => {
+                    var mhmm = "nick/Mhmm" + regQuoteNumber.exec(message.content) + ".wav";
+                    playSound(connection, mhmm);
+                }, error => {
+                    console.error(error);
+                });
+            } else {
+                return;
+            }
         } else {
-            return;
+            if (message.member.voiceChannel) {
+                message.member.voiceChannel.join().then(connection => {
+                    var mhmm = "nick/Mhmm" + Math.floor((Math.random() * 15)) + ".wav";
+                    playSound(connection, mhmm);
+                }, error => {
+                    console.error(error);
+                });
+            } else {
+                return;
+            }
         }
     }
 
