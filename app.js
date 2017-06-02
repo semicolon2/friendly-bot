@@ -187,7 +187,6 @@ function getQuote(guildID, quoteID = null) {
 }
 
 var commandList = jsonFile.readFileSync(path.join(__dirname, "/voicecommands.json"));
-console.log(commandList);
 
 bot.on('message', message => {
 
