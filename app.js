@@ -1,4 +1,3 @@
-const env = require('./env.js');
 const express = require('express');
 var app = express();
 const path = require('path');
@@ -9,6 +8,10 @@ const opus = require('node-opus');
 const jsonFile = require('jsonfile');
 const mongoose = require('mongoose');
 const Promise = require('promise');
+
+if (fs.existsSync(path.join(__dirname, "/env.js"))) {
+    var env = require('./env.js');
+}
 
 //keep alive
 var http = require("http");
