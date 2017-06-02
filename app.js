@@ -18,7 +18,7 @@ setInterval(function() {
 
 //================for displaying a page with discord request===================
 app.set('port', (process.env.PORT || 5000));
-app.set('dbURI', (process.env.MONGODB_URI || 'mongodb://localhost/friendlybot'));
+app.set('dbURI', (process.env.MONGODB_URI || env.dbURI));
 app.set('token', (process.env.TOKEN || env.token));
 
 app.set('views', path.join(__dirname, 'views'));
@@ -45,13 +45,8 @@ bot.on('ready', () => {
     console.log('bot is ready!');
 });
 
-//regex for some commands
-var quoteCommand = /^!quote/i;
-var addQuote = /^!addquote/i;
-var modifyQuoteReg = /^!modifyquote/i;
-var removeQuoteReg = /^!removequote/i;
+//regex for some commands, mostly 8ball
 var regQuoteNumber = /\d+/;
-var regEightBall = /^!8ball/i;
 var findQuote = /^!quote \d*/i;
 var goingToDie = /going to die/i;
 var areYouGay = /are you gay/i;
@@ -64,7 +59,6 @@ var coffeeCheck = /coffee/i;
 var vagueCheck = / thing/i;
 var valentine = / my valentine/i;
 var chill = / ?just chill/i;
-var regMhmm = /^!mhmm/i;
 
 var eightBall = [
     "It is certain",
@@ -90,6 +84,7 @@ var eightBall = [
 ];
 
 var grounded = false;
+
 var soundQueue = [];
 
 function playSound(connection, fileName) {
@@ -188,17 +183,33 @@ function getQuote(guildID, quoteID = null) {
     });
 }
 
+var commandList = jsonFile.readFileSync(path.join(__dirname, "/voicecommands.json"));
+console.log(commandList);
+
 bot.on('message', message => {
 
-    //help message, lists most commands, vaguely
-    if (message.content === '!help') {
-        message.channel.sendMessage('!help\n!sergei\n!cory\n!cruel\n!succ\n!blackjack\n!ohshit\n!wah\n!uptown\n!yee\n!bees\n!ooh\n!time\n!where\n!addquote (quote here)\n!quote\n!quote (number for quote)\n!modifyQuote (quote number) (replacement)\n!removeQuote (quote number)');
+    //for single command => single sound
+    for (let command in commandList) {
+        if (commandList.hasOwnProperty(command)) {
+            if (message.content.startsWith(command)) {
+                if (message.member.voiceChannel) {
+                    message.member.voiceChannel.join().then(connection => {
+                        playSound(connection, commandList[command]);
+                    }, error => {
+                        console.error(error);
+                    });
+                } else {
+                    return;
+                }
+            }
+        }
     }
 
-    if (message.content === '!ohshit') {
+    if (message.content.startsWith("!wurtz")) {
         if (message.member.voiceChannel) {
             message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'oh_shit.wav');
+                let wurtz = "wurtz/wurtz" + Math.floor((Math.random() * 10)) + ".mp3";
+                playSound(connection, wurtz);
             }, error => {
                 console.error(error);
             });
@@ -206,39 +217,37 @@ bot.on('message', message => {
             return;
         }
     }
-    if (message.content === '!smash') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'smash.wav');
-            }, error => {
-                console.error(error);
-            });
+
+    if (message.content.startsWith("!mhmm")) {
+        if (regQuoteNumber.test(message.content)) { //can play a specific numbered mhmm
+            if (message.member.voiceChannel) {
+                message.member.voiceChannel.join().then(connection => {
+                    let mhmm = "nick/Mhmm" + regQuoteNumber.exec(message.content) + ".wav";
+                    playSound(connection, mhmm);
+                }, error => {
+                    console.error(error);
+                });
+            } else {
+                return;
+            }
         } else {
-            return;
+            if (message.member.voiceChannel) {
+                message.member.voiceChannel.join().then(connection => {
+                    let mhmm = "nick/Mhmm" + Math.floor((Math.random() * 15)) + ".wav";
+                    playSound(connection, mhmm);
+                }, error => {
+                    console.error(error);
+                });
+            } else {
+                return;
+            }
         }
-    }
-    if (message.content === '!succ') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'succ.wav');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-    if (message.content === '!ducc') {
-        message.channel.sendMessage("https://i.imgur.com/tqSfO6z.jpg");
-    }
-    if (message.content === '!clucc') {
-        message.channel.sendMessage("https://cdn.discordapp.com/attachments/211938490995179521/281669230976565249/f0db1b8cd9d0ed7a54e571dc340e8ec4e609d1fee854c2fecdbf3bb63e3f338c_1.jpg");
     }
 
     if (message.content === '!wah') {
         if (message.member.voiceChannel) {
             message.member.voiceChannel.join().then(connection => {
-                var wah = "waluigi/wah" + Math.floor((Math.random() * 12) + 1) + ".wav";
+                let wah = "waluigi/wah" + Math.floor((Math.random() * 12)) + ".wav";
                 playSound(connection, wah);
             }, error => {
                 console.error(error);
@@ -247,278 +256,20 @@ bot.on('message', message => {
             return;
         }
     }
-    if (message.content === '!uptown') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'wahh.wav');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-    if (message.content === '!yee') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'yee.wav');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-    if (message.content === '!yeefull') {
-        message.channel.sendMessage("no");
-        // if(message.member.voiceChannel){
-        //     message.member.voiceChannel.join().then(connection =>{
-        //         playSound(connection, 'yeefull.mp3');
-        //     });
-        // } else {
-        //     return;
-        // }
-    }
-    if (message.content === '!cory') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'cory.wav');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-    if (message.content === '!cruel') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'cruel.wav');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-    if (message.content === '!bees') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'Dr_Bees.wav');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-    if (message.content === '!ooh') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'ooooh.wav');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-    if (message.content === '!myah') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'myah.wav');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-    if (message.content === '!time') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'timetostop.wav');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-    if (message.content === '!where') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'yourparents.wav');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
 
-    if (message.content === '!wakemeup') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'wake.wav');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-
-    if (message.content === '!bee') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'bee.wav');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-
-    if (message.content === '!easymode') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'easymode.mp3');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-
-    if (message.content === '!lutebear') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'lute.wav');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-
-    if (message.content === '!bigboy') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'bigboy.wav');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-
-    if (message.content === '!raygay') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'imgay.mp3');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-
-    if (regMhmm.test(message.content)) {
-        if (regQuoteNumber.test(message.content)) {
-            if (message.member.voiceChannel) {
-                message.member.voiceChannel.join().then(connection => {
-                    var mhmm = "nick/Mhmm" + regQuoteNumber.exec(message.content) + ".wav";
-                    playSound(connection, mhmm);
-                }, error => {
-                    console.error(error);
-                });
-            } else {
-                return;
-            }
-        } else {
-            if (message.member.voiceChannel) {
-                message.member.voiceChannel.join().then(connection => {
-                    var mhmm = "nick/Mhmm" + Math.floor((Math.random() * 15)) + ".wav";
-                    playSound(connection, mhmm);
-                }, error => {
-                    console.error(error);
-                });
-            } else {
-                return;
-            }
-        }
-    }
-
-    if (message.content === '!frick') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'frick.wav');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-
-    if (message.content === '!yes') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'yes.mp3');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-
-    if (message.content === '!itsben') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'itsben.wav');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-
-    if (message.content === '!dayman') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'dayman.wav');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-
-    if (message.content === '!sun') {
-        if (message.member.voiceChannel) {
-            message.member.voiceChannel.join().then(connection => {
-                playSound(connection, 'tastethesun.mp3');
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            return;
-        }
-    }
-
+    //=============text chat only commands========================
 
     if (chill.test(message.content)) {
         message.channel.sendMessage("No you chill!");
         return;
+    }
+
+    if (message.content === '!ducc') {
+        message.channel.sendMessage("https://i.imgur.com/tqSfO6z.jpg");
+    }
+
+    if (message.content === '!clucc') {
+        message.channel.sendMessage("https://cdn.discordapp.com/attachments/211938490995179521/281669230976565249/f0db1b8cd9d0ed7a54e571dc340e8ec4e609d1fee854c2fecdbf3bb63e3f338c_1.jpg");
     }
 
     if (message.content === '!sergei') {
@@ -529,19 +280,20 @@ bot.on('message', message => {
         message.channel.sendMessage("D:");
         grounded = true;
     }
+
     if (message.content === '!forgive') {
         message.channel.sendMessage(":D");
         grounded = false;
     }
 
 
-    if (regEightBall.test(message.content)) {
+    if (message.content.startsWith("!8ball")) {
         if (grounded) {
             message.channel.sendMessage("I've been a bad bot & got grounded :C");
             return;
         }
 
-        var content = message.content.slice(7);
+        let content = message.content.slice(7);
 
         if (content === "") {
             message.channel.sendMessage("  ");
@@ -574,7 +326,7 @@ bot.on('message', message => {
     //==================quote commands==========================================
 
     //add a quote
-    if (addQuote.test(message.content)) {
+    if (message.content.startsWith("!addquote")) {
         saveQuote(message.content.slice(10), message.guild.id).then((newQuote) => {
             message.channel.sendMessage("Quote number " + (newQuote.id) + " has been added");
         }, (err) => {
@@ -586,7 +338,7 @@ bot.on('message', message => {
     }
 
     //get a quote
-    if (quoteCommand.test(message.content)) {
+    if (message.content.startsWith("!quote")) {
         if (findQuote.test(message.content)) { //find a specific quote by number?
             getQuote(message.guild.id, message.content.slice(7)).then((quote) => {
                 message.channel.sendMessage(quote);
@@ -603,7 +355,7 @@ bot.on('message', message => {
     }
 
     //modify a quote
-    if (modifyQuoteReg.test(message.content)) {
+    if (message.content.startsWith("!modifyquote")) {
         var quoteNumber = regQuoteNumber.exec(message.content);
         if (!message.content.slice(14 + quoteNumber.length)) {
             message.channel.sendMessage("Don't make an empty quote, asshole");
@@ -617,7 +369,7 @@ bot.on('message', message => {
     }
 
     //remove a quote
-    if (removeQuoteReg.test(message.content)) {
+    if (message.content.startsWith("!removequote")) {
         if (message.author.id == 145650335170428928) {
             var quoteNumber = regQuoteNumber.exec(message.content);
             removeQuote(quoteNumber, message.guild.id).then((response) => {
