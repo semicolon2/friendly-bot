@@ -12,6 +12,9 @@ const Promise = require('promise');
 
 //keep alive
 var http = require("http");
+setInterval(function() {
+    http.get("https://whispering-cove-88085.herokuapp.com/");
+}, 3000000);
 
 //================for displaying a page with discord request===================
 app.set('port', (process.env.PORT || 5000));
@@ -91,7 +94,6 @@ var soundQueue = [];
 function playSound(message, fileName) {
     getConnection(message).then(connection => {
         if (connection.speaking) {
-            console.log(connection.channel.id);
             soundQueue.push({ channel: connection.channel.id, message: message, fileName: fileName });
         } else {
             connection.playFile('./sounds/' + fileName).on('end', () => {
@@ -124,7 +126,6 @@ function getConnection(message) {
     return new Promise(function(fulfill, reject) {
         if (message.member.voiceChannel) {
             if (message.member.voiceChannel.connection) {
-                console.log("already connected");
                 fulfill(message.member.voiceChannel.connection);
             } else {
                 message.member.voiceChannel.join().then(connection => {

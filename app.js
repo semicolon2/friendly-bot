@@ -12,6 +12,9 @@ const Promise = require('promise');
 
 //keep alive
 var http = require("http");
+setInterval(function() {
+    http.get("https://whispering-cove-88085.herokuapp.com/");
+}, 1000 * 60 * 20);
 
 //================for displaying a page with discord request===================
 app.set('port', (process.env.PORT || 5000));
@@ -98,13 +101,8 @@ function playSound(connection, fileName) {
             if (soundQueue.length == 0) {
                 connection.disconnect();
             } else {
-                if (soundQueue.length > 5) {
-                    nextSound = { "connection": soundQueue[0].connection, "fileName": 'sheep.mp3' };
-                    soundQueue = [];
-                } else {
-                    nextSound = soundQueue[0];
-                    soundQueue.splice(0, 1);
-                }
+                nextSound = soundQueue[0];
+                soundQueue.splice(0, 1);
                 playSound(nextSound.connection, nextSound.fileName);
             }
         });
@@ -497,6 +495,18 @@ bot.on('message', message => {
         if (message.member.voiceChannel) {
             message.member.voiceChannel.join().then(connection => {
                 playSound(connection, 'dayman.wav');
+            }, error => {
+                console.error(error);
+            });
+        } else {
+            return;
+        }
+    }
+
+    if (message.content === '!sun') {
+        if (message.member.voiceChannel) {
+            message.member.voiceChannel.join().then(connection => {
+                playSound(connection, 'tastethesun.mp3');
             }, error => {
                 console.error(error);
             });
