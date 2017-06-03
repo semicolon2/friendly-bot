@@ -16,8 +16,8 @@ if (fs.existsSync(path.join(__dirname, "/env.js"))) {
 //keep alive
 var http = require("http");
 setInterval(function() {
-    http.get("https://whispering-cove-88085.herokuapp.com/");
-}, 1000 * 60 * 20);
+    http.get("http://whispering-cove-88085.herokuapp.com/");
+}, 1200000);
 
 //================for displaying a page with discord request===================
 app.set('port', (process.env.PORT || 5000));
