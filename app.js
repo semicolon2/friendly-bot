@@ -8,6 +8,7 @@ const opus = require('node-opus');
 const jsonFile = require('jsonfile');
 const mongoose = require('mongoose');
 const Promise = require('promise');
+const ms = require('./minestat');
 
 if (fs.existsSync(path.join(__dirname, "/env.js"))) {
     var env = require('./env.js');
@@ -23,6 +24,7 @@ setInterval(function() {
 app.set('port', (process.env.PORT || 5000));
 app.set('dbURI', (process.env.MONGODB_URI || env.dbURI));
 app.set('token', (process.env.TOKEN || env.token));
+app.set('mcserver', (process.env.MCSERVER || env.mcserver || null));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -260,6 +262,20 @@ bot.on('message', message => {
     }
 
     //=============text chat only commands========================
+
+    if (message.content === '!mcserver') {
+        if (app.get('mcserver')) {
+            ms.init(app.get('mcserver'), 25565, function() {
+                if (ms.online) {
+                    message.channel.sendMessage("Minecraft server is online :)");
+                } else {
+                    message.channel.sendMessage("Minecraft server is offline :(");
+                }
+            });
+        } else {
+            message.channel.sendMessage("No server ip found...");
+        }
+    }
 
     if (chill.test(message.content)) {
         message.channel.sendMessage("No you chill!");
