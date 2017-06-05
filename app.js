@@ -262,67 +262,67 @@ bot.on('message', message => {
     //=============text chat only commands========================
 
     if (chill.test(message.content)) {
-        message.channel.sendMessage("No you chill!");
+        message.channel.send("No you chill!");
         return;
     }
 
     if (message.content === '!ducc') {
-        message.channel.sendMessage("https://i.imgur.com/tqSfO6z.jpg");
+        message.channel.send("https://i.imgur.com/tqSfO6z.jpg");
     }
 
     if (message.content === '!clucc') {
-        message.channel.sendMessage("https://cdn.discordapp.com/attachments/211938490995179521/281669230976565249/f0db1b8cd9d0ed7a54e571dc340e8ec4e609d1fee854c2fecdbf3bb63e3f338c_1.jpg");
+        message.channel.send("https://cdn.discordapp.com/attachments/211938490995179521/281669230976565249/f0db1b8cd9d0ed7a54e571dc340e8ec4e609d1fee854c2fecdbf3bb63e3f338c_1.jpg");
     }
 
     if (message.content === '!sergei') {
-        message.channel.sendMessage("https://gifsound.com/?gif=i.imgur.com/HfbMsaE.gif&v=dXYs5GsnMbI&s=23");
+        message.channel.send("https://gifsound.com/?gif=i.imgur.com/HfbMsaE.gif&v=dXYs5GsnMbI&s=23");
     }
 
     if (message.content === '!ground') {
-        message.channel.sendMessage("D:");
+        message.channel.send("D:");
         grounded = true;
     }
 
     if (message.content === '!forgive') {
-        message.channel.sendMessage(":D");
+        message.channel.send(":D");
         grounded = false;
     }
 
 
     if (message.content.startsWith("!8ball")) {
         if (grounded) {
-            message.channel.sendMessage("I've been a bad bot & got grounded :C");
+            message.channel.send("I've been a bad bot & got grounded :C");
             return;
         }
 
         let content = message.content.slice(7);
 
         if (content === "") {
-            message.channel.sendMessage("  ");
+            message.channel.send("  ");
         } else if (goingToDie.test(message.content)) {
-            message.channel.sendMessage("Everyone will die some day.");
+            message.channel.send("Everyone will die some day.");
         } else if (areYouGay.test(message.content)) {
-            message.channel.sendMessage("I couldn't stop thinking about my stupid ex girlfriend!");
+            message.channel.send("I couldn't stop thinking about my stupid ex girlfriend!");
         } else if (lesbian.test(content)) {
-            message.channel.sendMessage("The other L word.");
+            message.channel.send("The other L word.");
         } else if (lesbians.test(content)) {
-            message.channel.sendMessage("I'm talking about love, Scott!");
+            message.channel.send("I'm talking about love, Scott!");
         } else if (bread.test(content)) {
-            message.channel.sendMessage("BREAD MAKES YOU FAT?!");
+            message.channel.send("BREAD MAKES YOU FAT?!");
         } else if (goodnight.test(content)) {
-            message.channel.sendMessage("Goodnight!");
+            message.channel.send("Goodnight!");
         } else if (heTries.test(content)) {
-            message.channel.sendMessage("oh mY GOD do I try");
+            message.channel.send("oh mY GOD do I try");
         } else if (coffeeCheck.test(content)) {
-            message.channel.sendMessage(eightBall[Math.floor(Math.random() * 8)]);
+            message.channel.send(eightBall[Math.floor(Math.random() * 8)]);
         } else if (vagueCheck.test(message.content.slice(6))) {
-            message.channel.sendMessage("plz, I can't read minds");
+            message.channel.send("plz, I can't read minds");
         } else if (valentine.test(content)) {
-            message.channel.sendMessage(eightBall[Math.floor(Math.random() * 8)]);
+            message.channel.send(eightBall[Math.floor(Math.random() * 8)]);
             // } else if (message.author.id === 158084776509571074) {
-            //     message.channel.sendMessage(eightBall[Math.floor(Math.random()*8)]);
+            //     message.channel.send(eightBall[Math.floor(Math.random()*8)]);
         } else
-            message.channel.sendMessage(eightBall[Math.floor(Math.random() * eightBall.length)]);
+            message.channel.send(eightBall[Math.floor(Math.random() * eightBall.length)]);
     }
 
     //==================quote commands==========================================
@@ -330,10 +330,10 @@ bot.on('message', message => {
     //add a quote
     if (message.content.startsWith("!addquote")) {
         saveQuote(message.content.slice(10), message.guild.id).then((newQuote) => {
-            message.channel.sendMessage("Quote number " + (newQuote.id) + " has been added");
+            message.channel.send("Quote number " + (newQuote.id) + " has been added");
         }, (err) => {
             console.log(err);
-            message.channel.sendMessage("Error saving quote x_x");
+            message.channel.send("Error saving quote x_x");
 
         });
 
@@ -343,13 +343,13 @@ bot.on('message', message => {
     if (message.content.startsWith("!quote")) {
         if (findQuote.test(message.content)) { //find a specific quote by number?
             getQuote(message.guild.id, message.content.slice(7)).then((quote) => {
-                message.channel.sendMessage(quote);
+                message.channel.send(quote);
             }, (err) => {
                 console.log(err);
             });
         } else { //get a random quote
             getQuote(message.guild.id).then((quote) => {
-                message.channel.sendMessage(quote);
+                message.channel.send(quote);
             }, (err) => {
                 console.log(err);
             });
@@ -360,11 +360,11 @@ bot.on('message', message => {
     if (message.content.startsWith("!modifyquote")) {
         var quoteNumber = regQuoteNumber.exec(message.content);
         if (!message.content.slice(14 + quoteNumber.length)) {
-            message.channel.sendMessage("Don't make an empty quote, asshole");
+            message.channel.send("Don't make an empty quote, asshole");
             return;
         }
         modifyQuote(message.content.slice(14 + quoteNumber.length), message.guild.id, quoteNumber).then((response) => {
-            message.channel.sendMessage(response);
+            message.channel.send(response);
         }, (err) => {
             console.log(err);
         });
@@ -375,12 +375,12 @@ bot.on('message', message => {
         if (message.author.id == 145650335170428928) {
             var quoteNumber = regQuoteNumber.exec(message.content);
             removeQuote(quoteNumber, message.guild.id).then((response) => {
-                message.channel.sendMessage(response);
+                message.channel.send(response);
             }, (err) => {
                 console.log(err);
             });
         } else {
-            message.channel.sendMessage("Only Ben gets to do that, you'd probably fuck it up");
+            message.channel.send("Only Ben gets to do that, you'd probably fuck it up");
         }
     }
 });
