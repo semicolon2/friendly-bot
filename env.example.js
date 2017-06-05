@@ -1,7 +1,6 @@
 const env = {
     token: "",
-    dbURI: "mongodb://localhost/friendlybot",
-    mcserver: ""
+    dbURI: "mongodb://localhost/friendlybot"
 };
 
 module.exports = env;

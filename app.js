@@ -23,7 +23,6 @@ setInterval(function() {
 app.set('port', (process.env.PORT || 5000));
 app.set('dbURI', (process.env.MONGODB_URI || env.dbURI));
 app.set('token', (process.env.TOKEN || env.token));
-app.set('mcserver', (process.env.MCSERVER || env.mcserver || null));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
