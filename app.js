@@ -222,7 +222,7 @@ bot.on('message', message => {
 
     if (message.content.startsWith("!machine")) {
         if (message.member.voiceChannel) {
-            message.member.voiceChanne.join().then(connection => {
+            message.member.voiceChannel.join().then(connection => {
                 let machine = "machine/Machine" + Math.floor((Math.random() * 5)) + ".wav";
                 playSound(connection, machine);
             }, error => {
