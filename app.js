@@ -190,6 +190,16 @@ var commandList = jsonFile.readFileSync(path.join(__dirname, "/voicecommands.jso
 
 bot.on('message', message => {
 
+    //bot ignores specified text channel
+    if (message.content.startsWith("!ignorechannel")) {
+        if (message.guild.channels.exists("name", message.content.slice(15))) {
+            ignoreChannel = message.guild.channels.find("name", message.content.slice(15));
+            //do the thing here
+        } else {
+            message.channel.send("channel with that name not found.");
+        }
+    }
+
     //for single command => single sound
     for (let command in commandList) {
         if (commandList.hasOwnProperty(command)) {
