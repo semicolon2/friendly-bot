@@ -274,7 +274,7 @@ bot.on('message', message => {
                 message.channel.sendMessage("Quote request must be a number");
                 return;
             }
-            db.getQuote(message.guild.id, ).then((quote) => {
+            db.getQuote(message.guild.id, message.content.slice(7)).then((quote) => {
                 message.channel.send(quote);
             }, (err) => {
                 console.log(err);
