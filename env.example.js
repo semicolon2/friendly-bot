@@ -1,6 +1,5 @@
 const env = {
     token: "",
-    dbURI: "mongodb://localhost/friendlybot"
+    dbURI: "postgres://user:pass@localhost:5432/friendlydb"
 };
-
 module.exports = env;

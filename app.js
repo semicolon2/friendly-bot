@@ -6,7 +6,6 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const opus = require('node-opus');
 const jsonFile = require('jsonfile');
-const mongoose = require('mongoose');
 const Promise = require('promise');
 
 if (fs.existsSync(path.join(__dirname, "/env.js"))) {
@@ -21,7 +20,7 @@ setInterval(function() {
 
 //================for displaying a page with discord request===================
 app.set('port', (process.env.PORT || 5000));
-app.set('dbURI', (process.env.MONGODB_URI || env.dbURI));
+app.set('dbURI', (process.env.DATABASE_URL || env.dbURI));
 app.set('token', (process.env.TOKEN || env.token));
 
 app.set('views', path.join(__dirname, 'views'));
@@ -35,11 +34,8 @@ app.get('/', function(req, res) {
 });
 
 //=================Database=====================================================
-mongoose.connect(app.get('dbURI'));
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-var Quote = require(path.join(__dirname, '/schemas/Quotes'));
-
+const db = require("./db.js");
+db.connect(app.get("dbURI"));
 
 //================bot & bot logic===============================================
 const bot = new Discord.Client();
@@ -61,7 +57,7 @@ var heTries = /^and he tries/i;
 var coffeeCheck = /coffee/i;
 var vagueCheck = / thing/i;
 var valentine = / my valentine/i;
-var chill = / ?just chill/i;
+var chill = / ?chill[^a-zA-Z]/i;
 
 var eightBall = [
     "It is certain",
@@ -107,85 +103,6 @@ function playSound(connection, fileName) {
     }
 }
 
-//quote controls
-
-function saveQuote(quote, guildID) {
-    return new Promise(function(fulfill, reject) {
-        Quote.findOne({ "guild": guildID }, {}, { sort: { 'id': -1 } }, (err, lastID) => {
-            if (err) {
-                reject(err);
-            } else {
-                var nextID = 0;
-                if (lastID) {
-                    nextID = lastID.id + 1;
-                }
-                var newQuote = new Quote({ "id": nextID, "quote": quote, "guild": guildID });
-                newQuote.save((err, newQuote) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        fulfill(newQuote);
-                    }
-                });
-            }
-        });
-    });
-}
-
-function modifyQuote(quote, guildID, quoteID) {
-    return new Promise(function(fulfill, reject) {
-        Quote.findOneAndUpdate({ "guild": guildID, "id": quoteID }, { "quote": quote }, (err, quote) => {
-            if (err) {
-                reject(err);
-            }
-            if (quote) {
-                fulfill("Quote " + quote.id + " has been modified");
-            } else {
-                fulfill(beRude());
-            }
-        });
-    });
-}
-
-function removeQuote(quoteID, guildID) {
-    return new Promise(function(fulfill, reject) {
-        Quote.findOneAndRemove({ "guild": guildID, "id": quoteID }, (err, quote) => {
-            if (err) {
-                reject(err);
-            }
-            if (quote) {
-                fulfill("Quote " + quote.id + " has been removed");
-            } else {
-                fulfill(beRude());
-            }
-        })
-    });
-}
-
-function getQuote(guildID, quoteID = null) {
-    return new Promise(function(fulfill, reject) {
-        if (quoteID) {
-            Quote.findOne({ "guild": guildID, "id": quoteID }, (err, quote) => {
-                if (err) {
-                    reject(err);
-                }
-                if (quote) {
-                    fulfill(quote.quote);
-                } else {
-                    fulfill(beRude());
-                }
-            });
-        } else {
-            Quote.find({ "guild": guildID }, (err, quote) => {
-                if (err) {
-                    reject(err);
-                }
-                fulfill(quote[Math.floor(Math.random() * quote.length)].quote);
-            });
-        }
-    });
-}
-
 var commandList = jsonFile.readFileSync(path.join(__dirname, "/voicecommands.json"));
 
 bot.on('message', message => {
@@ -203,7 +120,7 @@ bot.on('message', message => {
     //for single command => single sound
     for (let command in commandList) {
         if (commandList.hasOwnProperty(command)) {
-            if (message.content.startsWith(command)) {
+            if (message.content === command) {
                 if (message.member.voiceChannel) {
                     message.member.voiceChannel.join().then(connection => {
                         playSound(connection, commandList[command]);
@@ -217,7 +134,7 @@ bot.on('message', message => {
         }
     }
 
-    if (message.content.startsWith("!wurtz")) {
+    if (message.content === "!wurtz") {
         if (message.member.voiceChannel) {
             message.member.voiceChannel.join().then(connection => {
                 let wurtz = "wurtz/wurtz" + Math.floor((Math.random() * 10)) + ".mp3";
@@ -230,7 +147,7 @@ bot.on('message', message => {
         }
     }
 
-    if (message.content.startsWith("!machine")) {
+    if (message.content === "!machine") {
         if (message.member.voiceChannel) {
             message.member.voiceChannel.join().then(connection => {
                 let machine = "machine/Machine" + Math.floor((Math.random() * 5)) + ".wav";
@@ -301,16 +218,6 @@ bot.on('message', message => {
         message.channel.send("https://gifsound.com/?gif=i.imgur.com/HfbMsaE.gif&v=dXYs5GsnMbI&s=23");
     }
 
-    if (message.content === '!ground') {
-        message.channel.send("D:");
-        grounded = true;
-    }
-
-    if (message.content === '!forgive') {
-        message.channel.send(":D");
-        grounded = false;
-    }
-
 
     if (message.content.startsWith("!8ball")) {
         if (grounded) {
@@ -342,8 +249,6 @@ bot.on('message', message => {
             message.channel.send("plz, I can't read minds");
         } else if (valentine.test(content)) {
             message.channel.send(eightBall[Math.floor(Math.random() * 8)]);
-            // } else if (message.author.id === 158084776509571074) {
-            //     message.channel.send(eightBall[Math.floor(Math.random()*8)]);
         } else
             message.channel.send(eightBall[Math.floor(Math.random() * eightBall.length)]);
     }
@@ -352,7 +257,7 @@ bot.on('message', message => {
 
     //add a quote
     if (message.content.startsWith("!addquote")) {
-        saveQuote(message.content.slice(10), message.guild.id).then((newQuote) => {
+        db.addQuote(message.content.slice(10), message.guild.id).then((newQuote) => {
             message.channel.send("Quote number " + (newQuote.id) + " has been added");
         }, (err) => {
             console.log(err);
@@ -364,14 +269,14 @@ bot.on('message', message => {
 
     //get a quote
     if (message.content.startsWith("!quote")) {
-        if (findQuote.test(message.content)) { //find a specific quote by number?
-            getQuote(message.guild.id, message.content.slice(7)).then((quote) => {
+        if (findQuote.test(message.content)) { //find a specific quote by number
+            db.getQuote(message.guild.id, message.content.slice(7)).then((quote) => {
                 message.channel.send(quote);
             }, (err) => {
                 console.log(err);
             });
         } else { //get a random quote
-            getQuote(message.guild.id).then((quote) => {
+            db.getQuote(message.guild.id).then((quote) => {
                 message.channel.send(quote);
             }, (err) => {
                 console.log(err);
@@ -383,39 +288,26 @@ bot.on('message', message => {
     if (message.content.startsWith("!modifyquote")) {
         var quoteNumber = regQuoteNumber.exec(message.content);
         if (!message.content.slice(14 + quoteNumber.length)) {
-            message.channel.send("Don't make an empty quote, asshole");
+            message.channel.send("Don't make an empty quote");
             return;
         }
-        modifyQuote(message.content.slice(14 + quoteNumber.length), message.guild.id, quoteNumber).then((response) => {
-            message.channel.send(response);
+        db.modifyQuote(message.content.slice(14 + quoteNumber.length), message.guild.id, quoteNumber).then((quote) => {
+            message.channel.send("Quote " + quote.id + " has been modified");
         }, (err) => {
             console.log(err);
         });
     }
 
     //remove a quote
-    if (message.content.startsWith("!removequote")) {
-        if (message.author.id == 145650335170428928) {
-            var quoteNumber = regQuoteNumber.exec(message.content);
-            removeQuote(quoteNumber, message.guild.id).then((response) => {
-                message.channel.send(response);
-            }, (err) => {
-                console.log(err);
-            });
-        } else {
-            message.channel.send("Only Ben gets to do that, you'd probably fuck it up");
-        }
-    }
+    // if (message.content.startsWith("!removequote")) {
+    //     var quoteNumber = regQuoteNumber.exec(message.content);
+    //     db.removeQuote(quoteNumber, message.guild.id).then((quote) => {
+    //         message.channel.send("Quote " + quoteNumber + " has been removed");
+    //     }, (err) => {
+    //         console.log(err);
+    //     });
+    // }
 });
-
-function beRude() {
-    var rude = Math.floor(Math.random() * 101);
-    if (rude === (42 || 57 || 98)) {
-        return ("There is no quote with that number, dumbass");
-    } else {
-        return ("There is no quote with that number");
-    }
-}
 
 app.listen(app.get('port'), function() {
     console.log('listening on port ', app.get('port'));
