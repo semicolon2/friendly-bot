@@ -270,7 +270,11 @@ bot.on('message', message => {
     //get a quote
     if (message.content.startsWith("!quote")) {
         if (findQuote.test(message.content)) { //find a specific quote by number
-            db.getQuote(message.guild.id, message.content.slice(7)).then((quote) => {
+            if (isNaN(message.content.slice(7))) {
+                message.channel.sendMessage("Quote request must be a number");
+                return;
+            }
+            db.getQuote(message.guild.id, ).then((quote) => {
                 message.channel.send(quote);
             }, (err) => {
                 console.log(err);
