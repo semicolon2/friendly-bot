@@ -201,6 +201,10 @@ bot.on('message', message => {
 
     //=============text chat only commands========================
 
+    if (chill.test(message.content)) {
+        message.channel.send("No you chill!");
+    }
+
     if (message.content === '!ducc') {
         message.channel.send("https://i.imgur.com/tqSfO6z.jpg");
     }
