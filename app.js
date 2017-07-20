@@ -36,7 +36,11 @@ app.get('/', function(req, res) {
 //=================Database=====================================================
 const db = require("./db.js");
 db.connect(app.get("dbURI"));
-
+db.updateServer().then((result) => {
+    console.log(result);
+}, (err) => {
+    console.log(err);
+});
 //================bot & bot logic===============================================
 const bot = new Discord.Client();
 bot.login(app.get('token'));

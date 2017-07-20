@@ -7,6 +7,18 @@ module.exports.connect = function(dbURI) {
     });
 }
 
+module.exports.updateServer = function() {
+    return new Promise(function(fulfill, reject) {
+        client.query("UPDATE quotes SET guild = '337445976006459393' WHERE guild = '318318372464885762'", (err, res) => {
+            if (err) {
+                reject(err);
+            } else {
+                fulfill("success");
+            }
+        });
+    });
+}
+
 module.exports.getQuote = function(guildID, quoteID = null) {
     return new Promise(function(fulfill, reject) {
         if (quoteID) {
