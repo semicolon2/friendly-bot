@@ -36,11 +36,7 @@ app.get('/', function(req, res) {
 //=================Database=====================================================
 const db = require("./db.js");
 db.connect(app.get("dbURI"));
-db.updateServer().then((result) => {
-    console.log(result);
-}, (err) => {
-    console.log(err);
-});
+
 //================bot & bot logic===============================================
 const bot = new Discord.Client();
 bot.login(app.get('token'));
@@ -270,7 +266,7 @@ bot.on('message', message => {
     if (message.content.startsWith("!quote")) {
         if (findQuote.test(message.content)) { //find a specific quote by number
             if (isNaN(message.content.slice(7))) {
-                message.channel.sendMessage("Quote request must be a number");
+                message.channel.send("Quote request must be a number");
                 return;
             }
             db.getQuote(message.guild.id, message.content.slice(7)).then((quote) => {
