@@ -107,6 +107,11 @@ var commandList = jsonFile.readFileSync(path.join(__dirname, "/voicecommands.jso
 
 bot.on('message', message => {
 
+    //avoids running commands on what the bot says
+    if (message.author.bot) {
+        return;
+    }
+
     //bot ignores specified text channel
     if (message.content.startsWith("!ignorechannel")) {
         if (message.guild.channels.exists("name", message.content.slice(15))) {
@@ -202,15 +207,15 @@ bot.on('message', message => {
     //=============text chat only commands========================
 
     if (findTemp.test(message.content)) {
-        var temp = findTemp.exec(message.content);
-        if (temp[-1] == ('f' || 'F')) {
+        var temp = findTemp.exec(message.content)[0];
+        if (temp.endsWith('f') || temp.endsWith('F')) {
             var degrees = temp.slice(0, -1);
             degrees = Math.floor((degrees - 32) / 1.8);
-            message.channel.send(temp + "=" + degrees);
-        } else if (temp[-1] == ('c' || 'C')) {
+            message.channel.send(temp.toUpperCase() + " = " + degrees + "C");
+        } else if (temp.endsWith('c') || temp.endsWith('C')) {
             var degrees = temp.slice(0, -1);
             degrees = Math.floor((degrees * 1.8) + 32);
-            message.channel.send(temp + "=" + degrees);
+            message.channel.send(temp.toUpperCase() + " = " + degrees + "F");
         }
     }
 
