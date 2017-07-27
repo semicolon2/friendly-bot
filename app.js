@@ -57,7 +57,7 @@ var heTries = /^and he tries/i;
 var coffeeCheck = /coffee/i;
 var vagueCheck = / thing/i;
 var valentine = / my valentine/i;
-var chill = / ?chill[^a-zA-Z]/i;
+var findTemp = /\d+?[f,c]/i;
 
 var eightBall = [
     "It is certain",
@@ -200,6 +200,19 @@ bot.on('message', message => {
     }
 
     //=============text chat only commands========================
+
+    if (findTemp.test(message.content)) {
+        var temp = findTemp.exec(message.content);
+        if (temp[-1] == ('f' || 'F')) {
+            var degrees = temp.slice(0, -1);
+            degrees = Math.floor((degrees - 32) / 1.8);
+            message.channel.send(temp + "=" + degrees);
+        } else if (temp[-1] == ('c' || 'C')) {
+            var degrees = temp.slice(0, -1);
+            degrees = Math.floor((degrees * 1.8) + 32);
+            message.channel.send(temp + "=" + degrees);
+        }
+    }
 
     if (message.content === '!ducc') {
         message.channel.send("https://i.imgur.com/tqSfO6z.jpg");
