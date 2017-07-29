@@ -206,7 +206,7 @@ bot.on('message', message => {
 
     //=============text chat only commands========================
 
-    if (findTemp.test(message.content)) {
+    if (message.content.startsWith("!convert")) {
         var temp = findTemp.exec(message.content)[0];
         if (temp.endsWith('f') || temp.endsWith('F')) {
             var degrees = temp.slice(0, -1);
