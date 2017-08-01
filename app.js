@@ -82,8 +82,6 @@ var eightBall = [
     "Very doubtful"
 ];
 
-var grounded = false;
-
 var soundQueue = [];
 
 function playSound(connection, fileName) {
@@ -233,10 +231,6 @@ bot.on('message', message => {
 
 
     if (message.content.startsWith("!8ball")) {
-        if (grounded) {
-            message.channel.send("I've been a bad bot & got grounded :C");
-            return;
-        }
 
         let content = message.content.slice(7);
 
@@ -324,6 +318,12 @@ bot.on('message', message => {
     //         console.log(err);
     //     });
     // }
+});
+
+bot.on("guildMemberAdd", guildMember => {
+    if (guildMember.id == 145653602843754497 && guildMember.guild.id == 145651219820576768) {
+        guildMember.addRoles([206189484276973568, 146016129486159873]);
+    }
 });
 
 app.listen(app.get('port'), function() {
