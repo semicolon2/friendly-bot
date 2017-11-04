@@ -57,7 +57,7 @@ var heTries = /^and he tries/i;
 var coffeeCheck = /coffee/i;
 var vagueCheck = / thing/i;
 var valentine = / my valentine/i;
-var findTemp = /\d+?[f,c]/i;
+var findTemp = /-?\d+?[f,c]/i;
 
 var eightBall = [
     "It is certain",
