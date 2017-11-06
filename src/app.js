@@ -19,11 +19,24 @@ client.on('ready', () => {
 const voicePlayer = new VoicePlayer(client);
 
 client.on('message', message => {
+    if (message.author.bot) {
+        return;
+    }
+
     for(let command in voiceCommands) {
         if(voiceCommands.hasOwnProperty(command)) {
             if(message.content.startsWith(command)) {
                 voicePlayer.play(message, voiceCommands[command]);
+                return;
             }
         }
+    }
+
+    if(message.content.startsWith('!quote')) {
+        Database.getQuote(message.guild.id).then((quote) => {
+            message.channel.send(quote);
+        }, (err) => {
+            console.log(err);
+        });
     }
 });
