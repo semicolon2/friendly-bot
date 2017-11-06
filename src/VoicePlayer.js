@@ -20,6 +20,11 @@ export default class VoicePlayer {
                 }, err => {console.error(err)});
         }
     }
+
+    multiPlay(message, command) {
+        var fileName = command.filePrefix + Math.floor(Math.random() * command.count) + command.fileSuffix;
+        this.play(message, fileName);
+    }
     
     playSound(guildId, connection, fileName){
         if (connection.speaking === true) {

@@ -3,9 +3,14 @@ import Opus from 'node-opus';
 
 import keepAlive from './keepAlive';
 import startServer from './server';
-import Database from './db';
 import VoicePlayer from './VoicePlayer';
-const voiceCommands = require('./voiceCommands.json');
+import {getAQuote, addAQuote, modifyAQuote} from './quotes';
+import convertTemp from './convertTemp';
+
+const commands = require('./commands.json');
+const voiceCommands = commands.voiceCommands;
+const multiVoiceCommands = commands.multiVoiceCommands;
+const textCommands = commands.textCommands;
 
 startServer();
 keepAlive();
@@ -19,24 +24,51 @@ client.on('ready', () => {
 const voicePlayer = new VoicePlayer(client);
 
 client.on('message', message => {
-    if (message.author.bot) {
+    if (message.author.bot || !message.content.startsWith("!")) {
         return;
+    }
+
+    for(let command in textCommands) {
+        if(textCommands.hasOwnProperty(command)) {
+            if(message.content === command) {
+                message.channel.send(textCommands[command]);
+                return;
+            }
+        }
     }
 
     for(let command in voiceCommands) {
         if(voiceCommands.hasOwnProperty(command)) {
-            if(message.content.startsWith(command)) {
+            if(message.content === command) {
                 voicePlayer.play(message, voiceCommands[command]);
                 return;
             }
         }
     }
 
-    if(message.content.startsWith('!quote')) {
-        Database.getQuote(message.guild.id).then((quote) => {
-            message.channel.send(quote);
-        }, (err) => {
-            console.log(err);
-        });
+    for(let command in multiVoiceCommands) {
+        if(multiVoiceCommands.hasOwnProperty(command)) {
+            if(message.content === command) {
+                voicePlayer.multiPlay(message, multiVoiceCommands[command]);
+                return;
+            }
+        }
     }
+
+
+    if(message.content.startsWith('!quote')) {
+        getAQuote(message);
+        return;
+    }else if(message.content.startsWith('!addquote')) {
+        addAQuote(message);
+        return;
+    } else if(message.content.startsWith('!modifyquote')) {
+        modifyAQuote(message);
+        return;
+    } else if(message.content.startsWith("!convert")) {
+        convertTemp(message);
+    }
+
+    //TODO: let bot ignore specified channels
+
 });
