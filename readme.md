@@ -27,6 +27,6 @@ npm run start
 
 [generate a link here](https://discordapi.com/permissions.html) to add the bot to your server, it requires read messages, send messages, view channel, connect, and speak to fully function
 
-###Built With
+### Built With
 
 [Discord.js](https://discord.js.org/)
