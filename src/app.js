@@ -6,6 +6,7 @@ import startServer from './server';
 import VoicePlayer from './VoicePlayer';
 import {getAQuote, addAQuote, modifyAQuote} from './quotes';
 import convertTemp from './convertTemp';
+import {addSanta, sendSantas} from './secretSanta';
 
 const commands = require('./commands.json');
 const voiceCommands = commands.voiceCommands;
@@ -35,7 +36,7 @@ const eightball = [
 ];
 
 startServer();
-keepAlive();
+//keepAlive();
 
 const client = new Discord.Client();
 client.login(process.env.TOKEN);
@@ -91,6 +92,10 @@ client.on('message', message => {
         convertTemp(message);
     } else if(message.content.startsWith("!8ball")) {
         message.channel.send(eightball[Math.floor(Math.random() * eightball.length)]);
+    } else if(message.content.startsWith("!entersanta")) {
+        addSanta(message);
+    } else if(message.content.startsWith("!sendsantas")) {
+        sendSantas(message);
     }
 
     //TODO: let bot ignore specified channels
