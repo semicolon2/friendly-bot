@@ -36,7 +36,7 @@ const eightball = [
 ];
 
 startServer();
-//keepAlive();
+keepAlive();
 
 const client = new Discord.Client();
 client.login(process.env.TOKEN);
