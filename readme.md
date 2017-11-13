@@ -17,12 +17,19 @@ git clone https://github.com/semicolon2/friendly-bot.git
 npm install
 ```
 
-rename `.env.example` to simply `.env`, and add your own values
+rename `.env.example` to `.env`, and add your own values
 
 ### Running
 
 ```
 npm run start
+```
+
+You can also build first, this probably runs better and you can install without dev dependencies `npm install --production`
+
+```
+npm run build
+npm run deploy
 ```
 
 [generate a link here](https://discordapi.com/permissions.html) to add the bot to your server, it requires read messages, send messages, view channel, connect, and speak to fully function
