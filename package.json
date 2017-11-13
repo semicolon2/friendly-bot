@@ -11,7 +11,7 @@
   "scripts": {
     "start": "babel-node ./src/app.js",
     "build": "babel src -d dist --copy-files",
-    "deploy": "node dist/app.js"
+    "deploy": "babel src -d dist --copy-files && node dist/app.js"
   },
   "keywords": [],
   "author": "",
@@ -31,8 +31,6 @@
   },
   "optionalDependencies": {
     "erlpack": "^0.1.2",
-    "sodium": "^2.0.1",
-    "uws": "^8.14.1",
-    "zlib-sync": "^0.1.3"
+    "uws": "^8.14.1"
   }
 }
