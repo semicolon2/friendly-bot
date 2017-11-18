@@ -6,7 +6,7 @@ import startServer from './server';
 import VoicePlayer from './VoicePlayer';
 import {getAQuote, addAQuote, modifyAQuote} from './quotes';
 import convertTemp from './convertTemp';
-import {addSanta, sendSantas} from './secretSanta';
+import {addSanta, sendSantas, showSantas} from './secretSanta';
 
 const commands = require('./commands.json');
 const voiceCommands = commands.voiceCommands;
@@ -96,6 +96,8 @@ client.on('message', message => {
         addSanta(message);
     } else if(message.content.startsWith("!sendsantas")) {
         sendSantas(message);
+    } else if(message.content.startsWith("!showsantas")) {
+        showSantas(message);
     }
 
     //TODO: let bot ignore specified channels

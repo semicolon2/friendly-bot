@@ -46,6 +46,10 @@ export function sendSantas(message) {
   message.channel.send("Secret Santa's sent!");
 }
 
+export function showSantas(message) {
+  message.channel.send(santas.map((santa) => santa.username).join("\n"));
+}
+
 function shuffle(array) {
   let counter = array.length;
 
