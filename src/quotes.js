@@ -5,15 +5,15 @@ export function getAQuote(message) {
         if (isNaN(message.content.slice(7))) {
             message.channel.send("Quote request must be a number");
         } else {
-            getQuote(message.guild.id, message.content.slice(7)).then((quote) => {
-                message.channel.send(quote);
+            getQuote(message.guild.id, message.content.slice(7)).then(({quote, quoteID}) => {
+                message.channel.send(quoteID + ": " + quote);
             }, (err) => {
                 console.log(err);
             });
         }
     } else {
-        getQuote(message.guild.id).then((quote) => {
-            message.channel.send(quote);
+        getQuote(message.guild.id).then(({quote, quoteID}) => {
+            message.channel.send(quoteID + ": " + quote);
         }, (err) => {
             console.log(err);
         });

@@ -14,7 +14,7 @@ export function getQuote(guildID, quoteID = null) {
                     if (res.rowCount == 0) {
                         fulfill("No quote with that number exists");
                     } else {
-                        fulfill(res.rows[0].quote);
+                        fulfill({quote: res.rows[0].quote, quoteID});
                     }
                 }
             });
@@ -23,11 +23,12 @@ export function getQuote(guildID, quoteID = null) {
                 if (err) {
                     reject(err);
                 } else {
-                    client.query("SELECT quote FROM quotes WHERE guild = $1 AND id = $2", [guildID, Math.floor(Math.random() * res.rows[0].count)], (err, res) => {
+                    quoteID = Math.floor(Math.random() * res.rows[0].count);
+                    client.query("SELECT quote FROM quotes WHERE guild = $1 AND id = $2", [guildID, quoteID], (err, res) => {
                         if (err) {
                             reject(err);
                         } else {
-                            fulfill(res.rows[0].quote);
+                            fulfill({quote: res.rows[0].quote, quoteID});
                         }
                     });
                 }
