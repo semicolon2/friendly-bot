@@ -51,6 +51,7 @@
     "textCommands": {
         "!ducc": "https://i.imgur.com/tqSfO6z.jpg",
         "!clucc": "https://cdn.discordapp.com/attachments/211938490995179521/281669230976565249/f0db1b8cd9d0ed7a54e571dc340e8ec4e609d1fee854c2fecdbf3bb63e3f338c_1.jpg",
-        "!sergei": "https://gifsound.com/?gif=i.imgur.com/HfbMsaE.gif&v=dXYs5GsnMbI&s=23"
+        "!sergei": "https://gifsound.com/?gif=i.imgur.com/HfbMsaE.gif&v=dXYs5GsnMbI&s=23",
+        "!:clap:": ":clap:"
     }
 }
