@@ -33,7 +33,7 @@
             "count": 10
         },
         "!machine": {
-            "filePrefix": "machine/machine",
+            "filePrefix": "machine/Machine",
             "fileSuffix": ".wav",
             "count": 5
         },
