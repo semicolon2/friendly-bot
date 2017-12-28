@@ -37,10 +37,10 @@ export function modifyAQuote(message) {
     let quoteNumber = /^ \d+/.exec(message.content.slice(12));
     if (!quoteNumber) {
         message.channel.send("usage: !modifyquote [number] [new quote]");
-    } else if(!message.content.slice(13+quoteNumber.length)) {
+    } else if(!message.content.slice(13+quoteNumber[0].length)) {
         message.channel.send("Cannot create an empty quote")
     } else {
-        modifyQuote(message.content.slice(13 + quoteNumber.length), message.guild.id, quoteNumber[0]).then((quote) => {
+        modifyQuote(message.content.slice(13 + quoteNumber[0].length), message.guild.id, quoteNumber[0]).then((quote) => {
             message.channel.send("Quote " + quote.id + " has been modified");
         }, (err) => {
             console.log(err);
