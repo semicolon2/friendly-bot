@@ -39,19 +39,19 @@ export default class VoicePlayer {
     
     playSound(guildId, connection, fileName){
         if (connection.speaking === true) {
-            this.soundQueue = this.soundQueue.update(guildId, List(), list => list.push(Map({message, fileName})));
+            this.soundQueue = this.soundQueue.update(guildId, List(), list => list.push(Map({guildId, connection, fileName})));
         } else {
             connection.playFile(path.join(__dirname, '..', 'sounds', fileName)).on('end', () => {
                 if (!this.soundQueue.has(guildId)) {
                     connection.disconnect();
                 } else {
-                    nextSound = this.soundQueue.get(guildId).first();
+                    let nextSound = this.soundQueue.get(guildId).first();
                     this.soundQueue = this.soundQueue.update(guildId, list => list.shift());
 
                     if(this.soundQueue.get(guildId).isEmpty()){
                         this.soundQueue.delete(guildId);
                     }
-                    playSound(nextSound.get('message'), nextSound.get('fileName'));
+                    this.playSound(nextSound.get('guildId'), nextSound.get('connection'), nextSound.get('fileName'));
                 }
             });
         }
