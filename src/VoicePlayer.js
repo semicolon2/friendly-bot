@@ -5,6 +5,7 @@ export default class VoicePlayer {
     constructor(client) {
         this.soundQueue = Map();
         this.client = client;
+        this.multiPlayHistory = {}
     }
 
     play(message, fileName) {
@@ -22,7 +23,17 @@ export default class VoicePlayer {
     }
 
     multiPlay(message, command) {
-        var fileName = command.filePrefix + Math.floor(Math.random() * command.count) + command.fileSuffix;
+        let soundNumber = Math.floor(Math.random() * command.count)
+
+        if (command.filePrefix in this.multiPlayHistory) {
+            while (soundNumber == this.multiPlayHistory[command.filePrefix]) {
+                soundNumber = Math.floor(Math.random() * command.count)
+            }
+        }
+
+        this.multiPlayHistory[command.filePrefix] = soundNumber
+
+        var fileName = command.filePrefix + soundNumber + command.fileSuffix;
         this.play(message, fileName);
     }
     
