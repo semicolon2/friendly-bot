@@ -2,6 +2,8 @@ import {List, Map} from 'immutable';
 import path from 'path';
 
 export default class VoicePlayer {
+    var multiPlayHistory = {}
+
     constructor(client) {
         this.soundQueue = Map();
         this.client = client;
@@ -22,7 +24,17 @@ export default class VoicePlayer {
     }
 
     multiPlay(message, command) {
-        var fileName = command.filePrefix + Math.floor(Math.random() * command.count) + command.fileSuffix;
+        let soundNumber = Math.floor(Math.random() * command.count)
+
+        if (command in multiPlayHistory) {
+            while (soundNumber == multiPlayHistory['command']) {
+                soundNumber = Math.floor(Math.random() * command.count)
+            }
+        } else {
+            multiPlayHistory['command'] = soundNumber
+        }
+
+        var fileName = command.filePrefix + soundNumber + command.fileSuffix;
         this.play(message, fileName);
     }
     
