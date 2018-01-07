@@ -30,9 +30,9 @@ export default class VoicePlayer {
             while (soundNumber == multiPlayHistory[command.filePrefix]) {
                 soundNumber = Math.floor(Math.random() * command.count)
             }
-        } else {
-            multiPlayHistory[command.filePrefix] = soundNumber
         }
+
+        multiPlayHistory[command.filePrefix] = soundNumber
 
         var fileName = command.filePrefix + soundNumber + command.fileSuffix;
         this.play(message, fileName);
