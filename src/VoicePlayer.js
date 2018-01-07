@@ -2,11 +2,10 @@ import {List, Map} from 'immutable';
 import path from 'path';
 
 export default class VoicePlayer {
-    var multiPlayHistory = {}
-
     constructor(client) {
         this.soundQueue = Map();
         this.client = client;
+        this.multiPlayHistory = {}
     }
 
     play(message, fileName) {
