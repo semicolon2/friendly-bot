@@ -25,13 +25,13 @@ export default class VoicePlayer {
     multiPlay(message, command) {
         let soundNumber = Math.floor(Math.random() * command.count)
 
-        if (command.filePrefix in multiPlayHistory) {
-            while (soundNumber == multiPlayHistory[command.filePrefix]) {
+        if (command.filePrefix in this.multiPlayHistory) {
+            while (soundNumber == this.multiPlayHistory[command.filePrefix]) {
                 soundNumber = Math.floor(Math.random() * command.count)
             }
         }
 
-        multiPlayHistory[command.filePrefix] = soundNumber
+        this.multiPlayHistory[command.filePrefix] = soundNumber
 
         var fileName = command.filePrefix + soundNumber + command.fileSuffix;
         this.play(message, fileName);
