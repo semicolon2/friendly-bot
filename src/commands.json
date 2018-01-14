@@ -47,12 +47,10 @@
             "fileSuffix": ".wav",
             "count": 12
         },
-		{
 		"!dawey": {
 			"filePrefix": "dawey/dawey",
 			"fileSuffix": ".wav",
 			"count": 5
-		}
 		}
     },
     "textCommands": {
