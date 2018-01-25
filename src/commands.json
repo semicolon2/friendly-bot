@@ -25,7 +25,8 @@
         "!toadscreaminmariokart64": "toad.mp3",
         "!punch": "punch.wav",
         "!cena": "cena.wav",
-        "!jazz": "jazz.wav"
+        "!jazz": "jazz.wav",
+        "!chan": "jackiechan.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
