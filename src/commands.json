@@ -26,7 +26,8 @@
         "!punch": "punch.wav",
         "!cena": "cena.wav",
         "!jazz": "jazz.wav",
-        "!chan": "jackiechan.wav"
+        "!chan": "jackiechan.wav",
+        "!wednesday", "wednesday.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
