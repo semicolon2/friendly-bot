@@ -24,7 +24,11 @@
         "!ohshit": "oh_shit.wav",
         "!toadscreaminmariokart64": "toad.mp3",
         "!punch": "punch.wav",
-        "!cena": "cena.wav"
+        "!cena": "cena.wav",
+        "!jazz": "jazz.wav",
+        "!chan": "jackiechan.wav",
+        "!wednesday": "wednesday.wav",
+        "!mydudes": "mydudes.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
