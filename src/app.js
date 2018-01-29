@@ -1,5 +1,4 @@
 import Discord from 'discord.js';
-import Opus from 'node-opus';
 
 import keepAlive from './keepAlive';
 import startServer from './server';
