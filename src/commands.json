@@ -30,7 +30,10 @@
         "!wednesday": "wednesday.wav",
         "!mydudes": "mydudes.wav",
         "!bitconnect": "bitconnect.wav",
-        "!spaghet": "spaghet.wav"
+        "!spaghet": "spaghet.wav",
+        "!begone": "begonethot.wav",
+        "!queens": "allwomen.wav",
+        "!thot": "shesathot.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
