@@ -29,7 +29,12 @@
         "!chan": "jackiechan.wav",
         "!wednesday": "wednesday.wav",
         "!mydudes": "mydudes.wav",
-        "!omaewa": "omaewa.wav"
+        "!omaewa": "omaewa.wav",
+        "!bitconnect": "bitconnect.wav",
+        "!spaghet": "spaghet.wav",
+        "!begone": "begonethot.wav",
+        "!queens": "allwomen.wav",
+        "!thot": "shesathot.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
