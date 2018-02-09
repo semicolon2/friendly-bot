@@ -61,6 +61,11 @@
 			"filePrefix": "dawey/dawey",
 			"fileSuffix": ".wav",
 			"count": 5
+		},
+		"!wow": {
+			"filePrefix": "wow/wow_",
+			"fileSuffix": ".mp3",
+			"count": 11
 		}
     },
     "textCommands": {
