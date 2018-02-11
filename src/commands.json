@@ -34,7 +34,8 @@
         "!spaghet": "spaghet.wav",
         "!begone": "begonethot.wav",
         "!queens": "allwomen.wav",
-        "!thot": "shesathot.wav"
+        "!thot": "shesathot.wav",
+		"!noice": "Noice.mp3"
     },
     "multiVoiceCommands": {
         "!wurtz": {
