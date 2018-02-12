@@ -35,7 +35,8 @@
         "!begone": "begonethot.wav",
         "!queens": "allwomen.wav",
         "!thot": "shesathot.wav",
-		"!noice": "Noice.mp3"
+		"!noice": "Noice.mp3",
+        "!healing": "healing.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
@@ -68,11 +69,11 @@
 			"fileSuffix": ".mp3",
 			"count": 11
 		},
-        "!taunt": {
-            "filePrefix": "taunt/taunt_",
-            "fleSuffix": ".wav",
-            "count": 7
-        }
+        "!french": {
+			"filePrefix": "french/taunt",
+			"fileSuffix": ".wav",
+			"count": 5
+		}
     },
     "textCommands": {
         "!ducc": "https://i.imgur.com/tqSfO6z.jpg",
