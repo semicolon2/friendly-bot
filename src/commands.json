@@ -67,7 +67,12 @@
 			"filePrefix": "wow/wow_",
 			"fileSuffix": ".mp3",
 			"count": 11
-		}
+		},
+        "!taunt": {
+            "filePrefix": "taunt/taunt_",
+            "fleSuffix": ".wav",
+            "count": 7
+        }
     },
     "textCommands": {
         "!ducc": "https://i.imgur.com/tqSfO6z.jpg",
