@@ -73,6 +73,11 @@
 			"filePrefix": "french/taunt",
 			"fileSuffix": ".wav",
 			"count": 5
+		},
+		"!overwatch": {
+			"filePrefix": "overwatch/overwatch_",
+			"fileSuffix": ".mp3",
+			"count": 72
 		}
     },
     "textCommands": {
