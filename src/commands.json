@@ -36,7 +36,8 @@
         "!queens": "allwomen.wav",
         "!thot": "shesathot.wav",
 		"!noice": "Noice.mp3",
-        "!healing": "healing.wav"
+        "!healing": "healing.wav",
+        "!excellent": "excellent.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
