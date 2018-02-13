@@ -37,7 +37,8 @@
         "!thot": "shesathot.wav",
 		"!noice": "Noice.mp3",
         "!healing": "healing.wav",
-        "!excellent": "excellent.wav"
+        "!excellent": "excellent.wav",
+        "!snake": "snake.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
