@@ -38,7 +38,8 @@
 		"!noice": "Noice.mp3",
         "!healing": "healing.wav",
         "!excellent": "excellent.wav",
-        "!snake": "snake.wav"
+        "!snake": "snake.wav",
+		"!slob": "knob.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
