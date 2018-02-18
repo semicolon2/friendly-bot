@@ -39,7 +39,8 @@
         "!healing": "healing.wav",
         "!excellent": "excellent.wav",
         "!snake": "snake.wav",
-		"!slob": "knob.wav"
+		"!slob": "knob.wav",
+		"!ohno": "ohno.mp3"
     },
     "multiVoiceCommands": {
         "!wurtz": {
