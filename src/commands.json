@@ -40,7 +40,8 @@
         "!excellent": "excellent.wav",
         "!snake": "snake.wav",
 		"!slob": "knob.wav",
-		"!ohno": "ohno.mp3"
+		"!ohno": "ohno.mp3",
+        "!bleep": "bleep.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
