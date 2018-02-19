@@ -41,7 +41,8 @@
         "!snake": "snake.wav",
 		"!slob": "knob.wav",
 		"!ohno": "ohno.mp3",
-        "!bleep": "bleep.wav"
+        "!bleep": "bleep.wav",
+        "!weed": "weed.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
