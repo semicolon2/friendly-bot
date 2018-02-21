@@ -42,7 +42,8 @@
 		"!slob": "knob.wav",
 		"!ohno": "ohno.mp3",
         "!bleep": "bleep.wav",
-        "!weed": "weed.wav"
+        "!weed": "weed.wav",
+        "!fast": "fast.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
