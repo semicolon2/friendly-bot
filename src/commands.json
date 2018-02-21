@@ -85,6 +85,11 @@
 			"filePrefix": "overwatch/overwatch_",
 			"fileSuffix": ".mp3",
 			"count": 72
+		},
+		"!morning": {
+			"filePrefix": "morning/morning",
+			"fileSuffix": ".wav",
+			"count": 2
 		}
     },
     "textCommands": {
