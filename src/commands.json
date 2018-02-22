@@ -43,7 +43,8 @@
 		"!ohno": "ohno.mp3",
         "!bleep": "bleep.wav",
         "!weed": "weed.wav",
-        "!fast": "fast.wav"
+        "!fast": "fast.wav",
+		"!sure": "sure.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
