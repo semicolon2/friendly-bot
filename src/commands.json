@@ -44,7 +44,8 @@
         "!bleep": "bleep.wav",
         "!weed": "weed.wav",
         "!fast": "fast.wav",
-		"!sure": "sure.wav"
+		"!sure": "sure.wav",
+		"!relate": "relate.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
