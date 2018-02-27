@@ -46,7 +46,8 @@
         "!fast": "fast.wav",
 		"!sure": "sure.wav",
 		"!relate": "relate.wav",
-        "!captain": "captain.mp3"
+        "!captain": "captain.mp3",
+        "!bennyhill": "bennyhill.mp3"
     },
     "multiVoiceCommands": {
         "!wurtz": {
