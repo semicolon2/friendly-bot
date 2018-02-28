@@ -48,7 +48,8 @@
 		"!relate": "relate.wav",
         "!captain": "captain.mp3",
         "!bennyhill": "bennyhill.mp3",
-        "!interior": "interior.wav"
+        "!interior": "interior.wav",
+        "!memes": "memes.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
