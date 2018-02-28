@@ -94,7 +94,12 @@
 			"filePrefix": "morning/morning",
 			"fileSuffix": ".wav",
 			"count": 2
-		}
+		},
+        "!goodshit": {
+            "filePrefix": "signup/signup",
+            "fileSuffix": ".wav",
+            "count": 5
+        }
     },
     "textCommands": {
         "!ducc": "https://i.imgur.com/tqSfO6z.jpg",
