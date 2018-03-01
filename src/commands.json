@@ -101,6 +101,11 @@
             "filePrefix": "signup/signup",
             "fileSuffix": ".wav",
             "count": 5
+        },
+        "!lick": {
+            "filePrefix": "lick/lick",
+            "fileSuffix": ".wav",
+            "count": 27
         }
     },
     "textCommands": {
