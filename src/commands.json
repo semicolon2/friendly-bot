@@ -111,6 +111,11 @@
             "filePrefix": "inconceivable/inconceivable",
             "fileSuffix": ".wav",
             "count": 5
+        },
+        "!dangerzone": {
+            "filePrefix": "dangerzone/danger",
+            "fileSuffix": ".wav",
+            "count": 4
         }
     },
     "textCommands": {
