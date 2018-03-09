@@ -116,7 +116,12 @@
             "filePrefix": "dangerzone/danger",
             "fileSuffix": ".wav",
             "count": 4
-        }
+        },
+		"!souls": {
+			"filePrefix": "souls/souls",
+			"fileSuffix": ".wav",
+			"count": 5
+		}
     },
     "textCommands": {
         "!ducc": "https://i.imgur.com/tqSfO6z.jpg",

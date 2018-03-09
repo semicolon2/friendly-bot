@@ -6,6 +6,7 @@ import VoicePlayer from './VoicePlayer';
 import {getAQuote, addAQuote, modifyAQuote} from './quotes';
 import convertTemp from './convertTemp';
 import {addSanta, sendSantas, showSantas} from './secretSanta';
+import Stringify from 'csv-stringify';
 
 const commands = require('./commands.json');
 const voiceCommands = commands.voiceCommands;
@@ -97,6 +98,8 @@ client.on('message', message => {
         sendSantas(message);
     } else if(message.content.startsWith("!showsantas")) {
         showSantas(message);
+    } else if(message.content.startsWith("!export")) {
+
     }
 
     //TODO: let bot ignore specified channels

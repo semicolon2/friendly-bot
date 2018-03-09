@@ -80,3 +80,15 @@ export function removeQuote(quoteID, guildID) {
         });
     });
 }
+
+export function exportQuotes() {
+    return new Promise(function(fulfill, reject) {
+        client.query("SELECT id, quote from quotes WHERE guild = 337445976006459393", (err, res) => {
+            if(err) {
+                reject(err);
+            } else {
+                fulfill(res.rows[0]);
+            }
+        });
+    });
+}

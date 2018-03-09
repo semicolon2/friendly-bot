@@ -1,4 +1,4 @@
-import {getQuote, addQuote, modifyQuote} from './db';
+import {getQuote, addQuote, modifyQuote, exportQuotes} from './db';
 
 export function getAQuote(message) {
     if(message.content.slice(7)){
@@ -46,4 +46,8 @@ export function modifyAQuote(message) {
             console.log(err);
         });
     }
+}
+
+export function exportAllQuotes() {
+    return exportQuotes();
 }
