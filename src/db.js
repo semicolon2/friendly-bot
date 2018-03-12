@@ -81,13 +81,13 @@ export function removeQuote(quoteID, guildID) {
     });
 }
 
-export function exportQuotes() {
+export function exportQuotes(guildID) {
     return new Promise(function(fulfill, reject) {
-        client.query("SELECT id, quote from quotes WHERE guild = 337445976006459393", (err, res) => {
+        client.query("SELECT id, quote from quotes WHERE guild = $1 ORDER BY id", [guildID], (err, res) => {
             if(err) {
                 reject(err);
             } else {
-                fulfill(res.rows[0]);
+                fulfill(res.rows);
             }
         });
     });

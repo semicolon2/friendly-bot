@@ -3,10 +3,9 @@ import Discord from 'discord.js';
 import keepAlive from './keepAlive';
 import startServer from './server';
 import VoicePlayer from './VoicePlayer';
-import {getAQuote, addAQuote, modifyAQuote} from './quotes';
+import {getAQuote, addAQuote, modifyAQuote, exportAllQuotes} from './quotes';
 import convertTemp from './convertTemp';
 import {addSanta, sendSantas, showSantas} from './secretSanta';
-import Stringify from 'csv-stringify';
 
 const commands = require('./commands.json');
 const voiceCommands = commands.voiceCommands;
@@ -98,8 +97,8 @@ client.on('message', message => {
         sendSantas(message);
     } else if(message.content.startsWith("!showsantas")) {
         showSantas(message);
-    } else if(message.content.startsWith("!export")) {
-
+    } else if(message.content.startsWith("!export") && message.author.id == 145650335170428928) {
+        exportAllQuotes(message);
     }
 
     //TODO: let bot ignore specified channels

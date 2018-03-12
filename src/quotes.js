@@ -1,4 +1,5 @@
 import {getQuote, addQuote, modifyQuote, exportQuotes} from './db';
+import fs from 'fs';
 
 export function getAQuote(message) {
     if(message.content.slice(7)){
@@ -48,6 +49,17 @@ export function modifyAQuote(message) {
     }
 }
 
-export function exportAllQuotes() {
-    return exportQuotes();
+export function exportAllQuotes(message) {
+    exportQuotes(message.guild.id).then(quotes => {
+        let quotestr = quotes.reduce((file, quote) => {return file + quote.id + " " + quote.quote + "\r\n"}, "");
+        fs.writeFile('export.csv', quotestr, (err) => {
+            if(err) {
+                console.log(err);
+            } else {
+                message.channel.send({files:['export.csv']});
+            }
+        });
+    }, err => {
+        console.log(err);
+    });
 }
