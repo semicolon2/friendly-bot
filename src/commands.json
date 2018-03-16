@@ -50,7 +50,8 @@
         "!bennyhill": "bennyhill.mp3",
         "!interior": "interior.wav",
         "!memes": "memes.wav",
-		"!nut": "nut.wav"
+		"!nut": "nut.wav",
+        "!wakemeup": "wakemeup.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
