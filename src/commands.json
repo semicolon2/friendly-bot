@@ -51,7 +51,9 @@
         "!interior": "interior.wav",
         "!memes": "memes.wav",
 		"!nut": "nut.wav",
-        "!wakemeup": "wakemeup.wav"
+        "!wakemeup": "wakemeup.wav",
+        "!fusrodah": "fus.wav",
+        "!fus": "fus.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
