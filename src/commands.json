@@ -125,7 +125,12 @@
 			"filePrefix": "souls/souls",
 			"fileSuffix": ".wav",
 			"count": 5
-		}
+		},
+        "!huge": {
+            "filePrefix": "huge/huge",
+            "fileSuffix": ".wav",
+            "count": 7
+        }
     },
     "textCommands": {
         "!ducc": "https://i.imgur.com/tqSfO6z.jpg",
