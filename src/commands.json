@@ -130,11 +130,6 @@
             "filePrefix": "huge/huge",
             "fileSuffix": ".wav",
             "count": 7
-        },
-        "!glob": {
-            "filePrefix": "glob/glob",
-            "fileSuffx": ".wav",
-            "count": 6
         }
     },
     "textCommands": {
