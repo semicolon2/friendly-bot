@@ -51,7 +51,9 @@
         "!interior": "interior.wav",
         "!memes": "memes.wav",
 		"!nut": "nut.wav",
-		"!fortnite": "Cancer_dont_click.mp3"
+		"!fortnite": "Cancer_dont_click.mp3",
+        "!fusrodah": "fus.wav",
+        "!fus": "fus.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
@@ -123,7 +125,12 @@
 			"filePrefix": "souls/souls",
 			"fileSuffix": ".wav",
 			"count": 5
-		}
+		},
+        "!huge": {
+            "filePrefix": "huge/huge",
+            "fileSuffix": ".wav",
+            "count": 7
+        }
     },
     "textCommands": {
         "!ducc": "https://i.imgur.com/tqSfO6z.jpg",
