@@ -54,7 +54,9 @@
 		"!fortnite": "Cancer_dont_click.mp3",
         "!fusrodah": "fus.wav",
         "!fus": "fus.wav",
-        "!sean": "sean.wav"
+        "!sean": "sean.wav",
+        "!bonesaw": "bonesaw.wav",
+        "!sorryforwhat": "SorryForWhat.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
