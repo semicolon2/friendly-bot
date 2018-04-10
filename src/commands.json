@@ -56,7 +56,8 @@
         "!fus": "fus.wav",
         "!sean": "sean.wav",
         "!bonesaw": "bonesaw.wav",
-        "!sorryforwhat": "SorryForWhat.wav"
+        "!sorryforwhat": "SorryForWhat.wav",
+		"!darude": "darude.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
