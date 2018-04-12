@@ -51,7 +51,10 @@ export default class VoicePlayer {
                     if(this.soundQueue.get(guildId).isEmpty()){
                         this.soundQueue.delete(guildId);
                     }
-                    this.playSound(nextSound.get('guildId'), nextSound.get('connection'), nextSound.get('fileName'));
+					
+					if (nextSound != undefined) {
+						this.playSound(nextSound.get('guildId'), nextSound.get('connection'), nextSound.get('fileName'));
+					}
                 }
             });
         }

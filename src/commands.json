@@ -133,7 +133,12 @@
             "filePrefix": "huge/huge",
             "fileSuffix": ".wav",
             "count": 7
-        }
+        },
+		"!fortnite": {
+			"filePrefix": "fortnite/fortnite",
+			"fileSuffix": ".mp3",
+			"count": 16
+		}
     },
     "textCommands": {
         "!ducc": "https://i.imgur.com/tqSfO6z.jpg",
