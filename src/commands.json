@@ -59,7 +59,7 @@
 		"!darude": "darude.wav",
 		"!father": "Father.mp3",
         "!urmom": "urmom.mp3",
-		"!funnyjoke": "funnyjoke.mp3"
+		"!funnyjoke": "funnyjoke.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
