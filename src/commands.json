@@ -58,7 +58,8 @@
         "!sorryforwhat": "SorryForWhat.wav",
 		"!darude": "darude.wav",
 		"!father": "Father.mp3",
-        "!urmom": "urmom.mp3"
+        "!urmom": "urmom.mp3",
+		"!funnyjoke": "funnyjoke.mp3"
     },
     "multiVoiceCommands": {
         "!wurtz": {
