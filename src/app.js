@@ -45,6 +45,28 @@ client.on('ready', () => {
 
 const voicePlayer = new VoicePlayer(client);
 
+function listCommands(message) {
+    let commandsList = "Text Commands:\n";
+    
+    Object.keys(textCommands)
+        .sort()
+        .forEach(function(v, i) {
+            commandsList += `${v}\n`
+        });
+    
+    commandsList += "\nVoice Commands:\n"
+    
+    let allVoiceCommands = Object.assign({}, voiceCommands, multiVoiceCommands);
+    Object.keys(allVoiceCommands)
+        .sort()
+        .forEach(function(v, i) {
+            commandsList += `${v}\n`
+        });
+
+	message.author.send(commandsList);
+}
+
+
 client.on('message', message => {
     if (message.author.bot || !message.content.startsWith("!")) {
         return;
@@ -99,7 +121,9 @@ client.on('message', message => {
         showSantas(message);
     } else if(message.content.startsWith("!export") && message.author.id == 145650335170428928) {
         exportAllQuotes(message);
-    }
+    } else if (message.content.startsWith("!commands")) {
+		listCommands(message);
+	}
 
     //TODO: let bot ignore specified channels
 
