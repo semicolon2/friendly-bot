@@ -12,7 +12,7 @@ export function getQuote(guildID, quoteID = null) {
                     reject(err);
                 } else {
                     if (res.rowCount == 0) {
-                        fulfill("No quote with that number exists");
+                        reject("No quote with that number exists");
                     } else {
                         fulfill({quote: res.rows[0].quote, quoteID});
                     }

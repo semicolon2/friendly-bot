@@ -5,11 +5,13 @@ export function getAQuote(message) {
     if(message.content.slice(7)){
         if (isNaN(message.content.slice(7))) {
             message.channel.send("Quote request must be a number");
-        } else {
+        } else if (message.contente.slice(7) < 0) {
+			message.channel.send("Quote request must be a positive number")
+		} else {
             getQuote(message.guild.id, message.content.slice(7)).then(({quote, quoteID}) => {
                 message.channel.send(quoteID + ": " + quote);
             }, (err) => {
-                console.log(err);
+                message.channel.send.log(err);
             });
         }
     } else {
