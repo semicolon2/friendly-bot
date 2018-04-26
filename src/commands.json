@@ -60,7 +60,8 @@
 		"!father": "Father.mp3",
         "!urmom": "urmom.mp3",
 		"!funnyjoke": "funnyjoke.wav",
-		"!numberwang": "numberwang.wav"
+		"!numberwang": "numberwang.wav",
+		"!90skids": "90skids.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
