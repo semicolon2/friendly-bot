@@ -63,7 +63,8 @@
 		"!numberwang": "numberwang.wav",
 		"!90skids": "90skids.wav",
 		"!explain": "explain.wav",
-		"!firtnote": "fortnite/fortnite0.mp3"
+		"!firtnote": "fortnite/fortnite0.mp3",
+		"!penny": "penny.mp3"
     },
     "multiVoiceCommands": {
         "!wurtz": {
