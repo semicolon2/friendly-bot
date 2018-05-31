@@ -68,7 +68,8 @@
 		"!penny": "penny.mp3",
 		"!yanny": "laurel.wav",
 		"!laurel": "laurel.wav",
-		"!wombocombo": "wombocombo.wav"
+		"!wombocombo": "wombocombo.wav",
+		"!mybrand": "mybrand.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
