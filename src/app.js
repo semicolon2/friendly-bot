@@ -123,7 +123,9 @@ client.on('message', message => {
         exportAllQuotes(message);
     } else if (message.content.startsWith("!commands")) {
 		listCommands(message);
-	}
+	} else if (message.content.startsWith("!stop")) {
+        voicePlayer.stop(message);
+    }
 
     //TODO: let bot ignore specified channels
 

@@ -59,4 +59,11 @@ export default class VoicePlayer {
             });
         }
     }
+
+    stop(message) {
+        if (message.member.voiceChannel.connection) {
+            this.soundQueue.clear();
+            message.member.voiceChannel.connection.disconnect();
+        }
+    }
 }
