@@ -69,7 +69,8 @@
 		"!yanny": "laurel.wav",
 		"!laurel": "laurel.wav",
 		"!wombocombo": "wombocombo.wav",
-		"!mybrand": "mybrand.wav"
+		"!mybrand": "mybrand.wav",
+		"!mcdonalds": "mcdonalds.wav"
     },
     "multiVoiceCommands": {
         "!wurtz": {
