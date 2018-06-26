@@ -70,7 +70,8 @@
 		"!laurel": "laurel.wav",
 		"!wombocombo": "wombocombo.wav",
 		"!mybrand": "mybrand.wav",
-		"!mcdonalds": "mcdonalds.wav"
+		"!mcdonalds": "mcdonalds.wav",
+		"!died": "IDie.mp3"
     },
     "multiVoiceCommands": {
         "!wurtz": {
