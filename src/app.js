@@ -99,33 +99,27 @@ client.on("message", message => {
   }
 
   if (message.content.startsWith("!quote")) {
-    getAQuote(message);
+    message.channel.send(getAQuote(message));
     return;
   } else if (message.content.startsWith("!addquote")) {
-    addAQuote(message);
+    message.channel.send(addAQuote(message));
     return;
   } else if (message.content.startsWith("!modifyquote")) {
-    modifyAQuote(message);
+    message.channel.send(modifyAQuote(message));
     return;
   } else if (message.content.startsWith("!convert")) {
-    convertTemp(message);
+    message.channel.send(convertTemp(message));
   } else if (message.content.startsWith("!8ball")) {
     message.channel.send(
       eightball[Math.floor(Math.random() * eightball.length)]
     );
-  } else if (message.content.startsWith("!entersanta")) {
-    addSanta(message);
-  } else if (message.content.startsWith("!sendsantas")) {
-    sendSantas(message);
-  } else if (message.content.startsWith("!showsantas")) {
-    showSantas(message);
   } else if (
     message.content.startsWith("!export") &&
     message.author.id == 145650335170428928
   ) {
     exportAllQuotes(message);
   } else if (message.content.startsWith("!commands")) {
-    listCommands(message);
+    message.channel.send(listCommands(message));
   } else if (message.content.startsWith("!stop")) {
     voicePlayer.stop(message);
   }

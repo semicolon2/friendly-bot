@@ -7,10 +7,10 @@ export default function convertTemp(message) {
   if (temp.endsWith("f") || temp.endsWith("F")) {
     var degrees = temp.slice(0, -1);
     degrees = Math.floor((degrees - 32) / 1.8);
-    message.channel.send(temp.toLowerCase() + " = " + degrees + "c");
+    return temp.toLowerCase() + " = " + degrees + "c";
   } else if (temp.endsWith("c") || temp.endsWith("C")) {
     var degrees = temp.slice(0, -1);
     degrees = Math.floor(degrees * 1.8 + 32);
-    message.channel.send(temp.toLowerCase() + " = " + degrees + "f");
+    return temp.toLowerCase() + " = " + degrees + "f";
   }
 }
