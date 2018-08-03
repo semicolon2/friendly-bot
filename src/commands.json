@@ -1,153 +1,153 @@
 {
-    "voiceCommands": {
-        "!dayman": "dayman.wav",
-        "!itsben": "itsben.wav",
-        "!yes": "yes.mp3",
-        "!frick": "frick.wav",
-        "!raygay": "imgay.mp3",
-        "!bigboy": "bigboy.wav",
-        "!lutebear": "lute.wav",
-        "!easymode": "easymode.mp3",
-        "!bee": "bee.wav",
-        "!wakemeup": "wake.wav",
-        "!where": "yourparents.wav",
-        "!time": "timetostop.wav",
-        "!myah": "myah.wav",
-        "!ooh": "ooooh.wav",
-        "!bees": "Dr_Bees.wav",
-        "!cruel": "cruel.wav",
-        "!cory": "cory.wav",
-        "!yee": "yee.wav",
-        "!uptown": "wahh.wav",
-        "!succ": "succ.wav",
-        "!smash": "smash.wav",
-        "!ohshit": "oh_shit.wav",
-        "!toadscreaminmariokart64": "toad.mp3",
-        "!punch": "punch.wav",
-        "!cena": "cena.wav",
-        "!jazz": "jazz.wav",
-        "!chan": "jackiechan.wav",
-        "!wednesday": "wednesday.wav",
-        "!mydudes": "mydudes.wav",
-        "!omaewa": "omaewa.wav",
-        "!bitconnect": "bitconnect.wav",
-        "!spaghet": "spaghet.wav",
-        "!begone": "begonethot.wav",
-        "!queens": "allwomen.wav",
-        "!thot": "shesathot.wav",
-		"!noice": "Noice.mp3",
-        "!healing": "healing.wav",
-        "!excellent": "excellent.wav",
-        "!snake": "snake.wav",
-		"!slob": "knob.wav",
-		"!ohno": "ohno.mp3",
-        "!bleep": "bleep.wav",
-        "!weed": "weed.wav",
-        "!fast": "fast.wav",
-		"!sure": "sure.wav",
-		"!relate": "relate.wav",
-        "!captain": "captain.mp3",
-        "!bennyhill": "bennyhill.mp3",
-        "!interior": "interior.wav",
-        "!memes": "memes.wav",
-		"!nut": "nut.wav",
-        "!fusrodah": "fus.wav",
-        "!fus": "fus.wav",
-        "!sean": "sean.wav",
-        "!bonesaw": "bonesaw.wav",
-        "!sorryforwhat": "SorryForWhat.wav",
-		"!darude": "darude.wav",
-		"!father": "Father.mp3",
-        "!urmom": "urmom.mp3",
-		"!funnyjoke": "funnyjoke.wav",
-		"!numberwang": "numberwang.wav"
+  "voiceCommands": {
+    "!dayman": "dayman.wav",
+    "!itsben": "itsben.wav",
+    "!yes": "yes.mp3",
+    "!frick": "frick.wav",
+    "!raygay": "imgay.mp3",
+    "!bigboy": "bigboy.wav",
+    "!lutebear": "lute.wav",
+    "!easymode": "easymode.mp3",
+    "!bee": "bee.wav",
+    "!wakemeup": "wake.wav",
+    "!where": "yourparents.wav",
+    "!time": "timetostop.wav",
+    "!myah": "myah.wav",
+    "!ooh": "ooooh.wav",
+    "!bees": "Dr_Bees.wav",
+    "!cruel": "cruel.wav",
+    "!cory": "cory.wav",
+    "!yee": "yee.wav",
+    "!uptown": "wahh.wav",
+    "!succ": "succ.wav",
+    "!smash": "smash.wav",
+    "!ohshit": "oh_shit.wav",
+    "!toadscreaminmariokart64": "toad.mp3",
+    "!punch": "punch.wav",
+    "!cena": "cena.wav",
+    "!jazz": "jazz.wav",
+    "!chan": "jackiechan.wav",
+    "!wednesday": "wednesday.wav",
+    "!mydudes": "mydudes.wav",
+    "!omaewa": "omaewa.wav",
+    "!bitconnect": "bitconnect.wav",
+    "!spaghet": "spaghet.wav",
+    "!begone": "begonethot.wav",
+    "!queens": "allwomen.wav",
+    "!thot": "shesathot.wav",
+    "!noice": "Noice.mp3",
+    "!healing": "healing.wav",
+    "!excellent": "excellent.wav",
+    "!snake": "snake.wav",
+    "!slob": "knob.wav",
+    "!ohno": "ohno.mp3",
+    "!bleep": "bleep.wav",
+    "!weed": "weed.wav",
+    "!fast": "fast.wav",
+    "!sure": "sure.wav",
+    "!relate": "relate.wav",
+    "!captain": "captain.mp3",
+    "!bennyhill": "bennyhill.mp3",
+    "!interior": "interior.wav",
+    "!memes": "memes.wav",
+    "!nut": "nut.wav",
+    "!fusrodah": "fus.wav",
+    "!fus": "fus.wav",
+    "!sean": "sean.wav",
+    "!bonesaw": "bonesaw.wav",
+    "!sorryforwhat": "SorryForWhat.wav",
+    "!darude": "darude.wav",
+    "!father": "Father.mp3",
+    "!urmom": "urmom.mp3",
+    "!funnyjoke": "funnyjoke.wav",
+    "!numberwang": "numberwang.wav"
+  },
+  "multiVoiceCommands": {
+    "!wurtz": {
+      "filePrefix": "wurtz/wurtz",
+      "fileSuffix": ".mp3",
+      "count": 10
     },
-    "multiVoiceCommands": {
-        "!wurtz": {
-            "filePrefix": "wurtz/wurtz",
-            "fileSuffix": ".mp3",
-            "count": 10
-        },
-        "!machine": {
-            "filePrefix": "machine/Machine",
-            "fileSuffix": ".wav",
-            "count": 5
-        },
-        "!mhmm": {
-            "filePrefix": "nick/Mhmm",
-            "fileSuffix": ".wav",
-            "count": 15
-        },
-        "!wah": {
-            "filePrefix": "waluigi/wah",
-            "fileSuffix": ".wav",
-            "count": 12
-        },
-		"!dawey": {
-			"filePrefix": "dawey/dawey",
-			"fileSuffix": ".wav",
-			"count": 5
-		},
-		"!wow": {
-			"filePrefix": "wow/wow_",
-			"fileSuffix": ".mp3",
-			"count": 11
-		},
-        "!french": {
-			"filePrefix": "french/taunt",
-			"fileSuffix": ".wav",
-			"count": 5
-		},
-		"!overwatch": {
-			"filePrefix": "overwatch/overwatch_",
-			"fileSuffix": ".mp3",
-			"count": 72
-		},
-		"!morning": {
-			"filePrefix": "morning/morning",
-			"fileSuffix": ".wav",
-			"count": 2
-		},
-        "!goodshit": {
-            "filePrefix": "signup/signup",
-            "fileSuffix": ".wav",
-            "count": 5
-        },
-        "!lick": {
-            "filePrefix": "lick/lick",
-            "fileSuffix": ".wav",
-            "count": 27
-        },
-        "!inconceivable": {
-            "filePrefix": "inconceivable/inconceivable",
-            "fileSuffix": ".wav",
-            "count": 5
-        },
-        "!dangerzone": {
-            "filePrefix": "dangerzone/danger",
-            "fileSuffix": ".wav",
-            "count": 4
-        },
-		"!souls": {
-			"filePrefix": "souls/souls",
-			"fileSuffix": ".wav",
-			"count": 5
-		},
-        "!huge": {
-            "filePrefix": "huge/huge",
-            "fileSuffix": ".wav",
-            "count": 7
-        },
-		"!fortnite": {
-			"filePrefix": "fortnite/fortnite",
-			"fileSuffix": ".mp3",
-			"count": 16
-		}
+    "!machine": {
+      "filePrefix": "machine/Machine",
+      "fileSuffix": ".wav",
+      "count": 5
     },
-    "textCommands": {
-        "!ducc": "https://i.imgur.com/tqSfO6z.jpg",
-        "!clucc": "https://cdn.discordapp.com/attachments/211938490995179521/281669230976565249/f0db1b8cd9d0ed7a54e571dc340e8ec4e609d1fee854c2fecdbf3bb63e3f338c_1.jpg",
-        "!sergei": "https://gifsound.com/?gif=i.imgur.com/HfbMsaE.gif&v=dXYs5GsnMbI&s=23",
-        "!:clap:": ":clap:"
+    "!mhmm": {
+      "filePrefix": "nick/Mhmm",
+      "fileSuffix": ".wav",
+      "count": 15
+    },
+    "!wah": {
+      "filePrefix": "waluigi/wah",
+      "fileSuffix": ".wav",
+      "count": 12
+    },
+    "!dawey": {
+      "filePrefix": "dawey/dawey",
+      "fileSuffix": ".wav",
+      "count": 5
+    },
+    "!wow": {
+      "filePrefix": "wow/wow_",
+      "fileSuffix": ".mp3",
+      "count": 11
+    },
+    "!french": {
+      "filePrefix": "french/taunt",
+      "fileSuffix": ".wav",
+      "count": 5
+    },
+    "!overwatch": {
+      "filePrefix": "overwatch/overwatch_",
+      "fileSuffix": ".mp3",
+      "count": 72
+    },
+    "!morning": {
+      "filePrefix": "morning/morning",
+      "fileSuffix": ".wav",
+      "count": 2
+    },
+    "!goodshit": {
+      "filePrefix": "signup/signup",
+      "fileSuffix": ".wav",
+      "count": 5
+    },
+    "!lick": {
+      "filePrefix": "lick/lick",
+      "fileSuffix": ".wav",
+      "count": 27
+    },
+    "!inconceivable": {
+      "filePrefix": "inconceivable/inconceivable",
+      "fileSuffix": ".wav",
+      "count": 5
+    },
+    "!dangerzone": {
+      "filePrefix": "dangerzone/danger",
+      "fileSuffix": ".wav",
+      "count": 4
+    },
+    "!souls": {
+      "filePrefix": "souls/souls",
+      "fileSuffix": ".wav",
+      "count": 5
+    },
+    "!huge": {
+      "filePrefix": "huge/huge",
+      "fileSuffix": ".wav",
+      "count": 7
+    },
+    "!fortnite": {
+      "filePrefix": "fortnite/fortnite",
+      "fileSuffix": ".mp3",
+      "count": 16
     }
+  },
+  "textCommands": {
+    "!ducc": "https://i.imgur.com/tqSfO6z.jpg",
+    "!clucc": "https://cdn.discordapp.com/attachments/211938490995179521/281669230976565249/f0db1b8cd9d0ed7a54e571dc340e8ec4e609d1fee854c2fecdbf3bb63e3f338c_1.jpg",
+    "!sergei": "https://gifsound.com/?gif=i.imgur.com/HfbMsaE.gif&v=dXYs5GsnMbI&s=23",
+    "!:clap:": ":clap:"
+  }
 }
