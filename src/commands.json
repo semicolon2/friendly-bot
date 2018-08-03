@@ -55,12 +55,23 @@
     "!fus": "fus.wav",
     "!sean": "sean.wav",
     "!bonesaw": "bonesaw.wav",
+    "!BONESAW": "bonesaw_loud.wav",
     "!sorryforwhat": "SorryForWhat.wav",
     "!darude": "darude.wav",
     "!father": "Father.mp3",
     "!urmom": "urmom.mp3",
     "!funnyjoke": "funnyjoke.wav",
-    "!numberwang": "numberwang.wav"
+    "!numberwang": "numberwang.wav",
+    "!90skids": "90skids.wav",
+    "!explain": "explain.wav",
+    "!firtnote": "fortnite/fortnite0.mp3",
+    "!penny": "penny.mp3",
+    "!yanny": "laurel.wav",
+    "!laurel": "laurel.wav",
+    "!wombocombo": "wombocombo.wav",
+    "!mybrand": "mybrand.wav",
+    "!mcdonalds": "mcdonalds.wav",
+    "!died": "IDie.mp3"
   },
   "multiVoiceCommands": {
     "!wurtz": {
@@ -146,8 +157,10 @@
   },
   "textCommands": {
     "!ducc": "https://i.imgur.com/tqSfO6z.jpg",
-    "!clucc": "https://cdn.discordapp.com/attachments/211938490995179521/281669230976565249/f0db1b8cd9d0ed7a54e571dc340e8ec4e609d1fee854c2fecdbf3bb63e3f338c_1.jpg",
-    "!sergei": "https://gifsound.com/?gif=i.imgur.com/HfbMsaE.gif&v=dXYs5GsnMbI&s=23",
+    "!clucc":
+      "https://cdn.discordapp.com/attachments/211938490995179521/281669230976565249/f0db1b8cd9d0ed7a54e571dc340e8ec4e609d1fee854c2fecdbf3bb63e3f338c_1.jpg",
+    "!sergei":
+      "https://gifsound.com/?gif=i.imgur.com/HfbMsaE.gif&v=dXYs5GsnMbI&s=23",
     "!:clap:": ":clap:"
   }
 }
