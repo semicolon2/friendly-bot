@@ -1,10 +1,10 @@
-import { Pool } from "pg";
+const { Pool } = require("pg");
 
 const client = new Pool({
   connectionString: process.env.DATABASE_URL
 });
 
-export function getQuote(guildID, quoteID = null) {
+function getQuote(guildID, quoteID = null) {
   return new Promise(function(fulfill, reject) {
     if (quoteID) {
       client.query(
@@ -49,7 +49,7 @@ export function getQuote(guildID, quoteID = null) {
   });
 }
 
-export function addQuote(quote, guildID) {
+function addQuote(quote, guildID) {
   return new Promise(function(fulfill, reject) {
     client.query(
       "SELECT id FROM quotes WHERE guild = $1 ORDER BY id desc LIMIT 1",
@@ -76,7 +76,7 @@ export function addQuote(quote, guildID) {
   });
 }
 
-export function modifyQuote(quote, guildID, quoteID) {
+function modifyQuote(quote, guildID, quoteID) {
   return new Promise(function(fulfill, reject) {
     client.query(
       "UPDATE quotes SET quote = $1 WHERE guild = $2 AND id = $3 RETURNING *",
@@ -92,7 +92,7 @@ export function modifyQuote(quote, guildID, quoteID) {
   });
 }
 
-export function removeQuote(quoteID, guildID) {
+function removeQuote(quoteID, guildID) {
   return new Promise(function(fulfill, reject) {
     client.query(
       "UPDATE quotes SET id = -1 WHERE guild = $1 AND id = $2 RETURNING *",
@@ -108,7 +108,7 @@ export function removeQuote(quoteID, guildID) {
   });
 }
 
-export function exportQuotes(guildID) {
+function serverQuotes(guildID) {
   return new Promise(function(fulfill, reject) {
     client.query(
       "SELECT id, quote from quotes WHERE guild = $1 ORDER BY id",
@@ -123,3 +123,11 @@ export function exportQuotes(guildID) {
     );
   });
 }
+
+module.exports = {
+  getQuote,
+  addQuote,
+  modifyQuote,
+  removeQuote,
+  serverQuotes
+};

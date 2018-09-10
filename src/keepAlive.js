@@ -1,7 +1,7 @@
-import http from "http";
+const http = require("http");
 
-export default function keepAlive() {
+module.exports = function keepAlive() {
   setInterval(function() {
     http.get("http://whispering-cove-88085.herokuapp.com/");
   }, 1200000);
-}
+};

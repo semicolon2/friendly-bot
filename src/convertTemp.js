@@ -1,4 +1,4 @@
-export default function convertTemp(message) {
+module.exports = function convertTemp(message) {
   var temp = /-?\d+?[f,c]/i.exec(message.content);
   if (!temp) {
     return;
@@ -13,4 +13,4 @@ export default function convertTemp(message) {
     degrees = Math.floor(degrees * 1.8 + 32);
     return temp.toLowerCase() + " = " + degrees + "f";
   }
-}
+};

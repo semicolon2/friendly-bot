@@ -1,7 +1,7 @@
 import { List, Map } from "immutable";
 import path from "path";
 
-export default class VoicePlayer {
+module.export = class VoicePlayer {
   constructor(client) {
     this.soundQueue = Map();
     this.client = client;
@@ -84,4 +84,4 @@ export default class VoicePlayer {
       message.member.voiceChannel.connection.disconnect();
     }
   }
-}
+};

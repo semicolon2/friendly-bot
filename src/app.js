@@ -1,16 +1,17 @@
-import Discord from "discord.js";
+const Discord = require("discord.js");
 
-import keepAlive from "./keepAlive";
-import startServer from "./server";
-import VoicePlayer from "./VoicePlayer";
-import { getAQuote, addAQuote, modifyAQuote, exportAllQuotes } from "./quotes";
-import convertTemp from "./convertTemp";
-import { addSanta, sendSantas, showSantas } from "./secretSanta";
+const keepAlive = require("./keepAlive");
+const startServer = require("./server");
+//const VoicePlayer = require("./VoicePlayer");
+const { quote, newQuote, editQuote, exportQuotes } = require("./quotes");
+const convertTemp = require("./convertTemp");
 
-const commands = require("./commands.json");
-const voiceCommands = commands.voiceCommands;
-const multiVoiceCommands = commands.multiVoiceCommands;
-const textCommands = commands.textCommands;
+const {
+  voiceCommands,
+  multiVoiceCommands,
+  textCommands
+} = require("./commands.json");
+
 const eightball = [
   "It is certain",
   "It is decidedly so",
@@ -43,7 +44,7 @@ client.on("ready", () => {
   console.log("bot is ready!");
 });
 
-const voicePlayer = new VoicePlayer(client);
+//const voicePlayer = new VoicePlayer(client);
 
 function listCommands(message) {
   let commandsList = "Text Commands:\n";
@@ -66,7 +67,7 @@ function listCommands(message) {
   message.author.send(commandsList);
 }
 
-client.on("message", message => {
+client.on("message", async message => {
   if (message.author.bot || !message.content.startsWith("!")) {
     return;
   }
@@ -80,44 +81,48 @@ client.on("message", message => {
     }
   }
 
-  for (let command in voiceCommands) {
-    if (voiceCommands.hasOwnProperty(command)) {
-      if (message.content === command) {
-        voicePlayer.play(message, voiceCommands[command]);
-        return;
-      }
-    }
-  }
+  // for (let command in voiceCommands) {
+  //   if (voiceCommands.hasOwnProperty(command)) {
+  //     if (message.content === command) {
+  //       voicePlayer.play(message, voiceCommands[command]);
+  //       return;
+  //     }
+  //   }
+  // }
 
-  for (let command in multiVoiceCommands) {
-    if (multiVoiceCommands.hasOwnProperty(command)) {
-      if (message.content === command) {
-        voicePlayer.multiPlay(message, multiVoiceCommands[command]);
-        return;
-      }
-    }
-  }
+  // for (let command in multiVoiceCommands) {
+  //   if (multiVoiceCommands.hasOwnProperty(command)) {
+  //     if (message.content === command) {
+  //       voicePlayer.multiPlay(message, multiVoiceCommands[command]);
+  //       return;
+  //     }
+  //   }
+  // }
 
   if (message.content.startsWith("!quote")) {
-    message.channel.send(getAQuote(message));
+    let m = await quote(message);
+    message.channel.send(m);
     return;
   } else if (message.content.startsWith("!addquote")) {
-    message.channel.send(addAQuote(message));
+    let m = await newQuote(message);
+    message.channel.send(m);
     return;
-  } else if (message.content.startsWith("!modifyquote")) {
-    message.channel.send(modifyAQuote(message));
+  } else if (message.content.startsWith("!editquote")) {
+    let m = await editQuote(message);
+    message.channel.send(m);
     return;
+  } else if (
+    message.content.startsWith("!export") &&
+    message.author.id == 145650335170428928
+  ) {
+    let m = await exportQuotes(message);
+    message.channel.send(m);
   } else if (message.content.startsWith("!convert")) {
     message.channel.send(convertTemp(message));
   } else if (message.content.startsWith("!8ball")) {
     message.channel.send(
       eightball[Math.floor(Math.random() * eightball.length)]
     );
-  } else if (
-    message.content.startsWith("!export") &&
-    message.author.id == 145650335170428928
-  ) {
-    exportAllQuotes(message);
   } else if (message.content.startsWith("!commands")) {
     message.channel.send(listCommands(message));
   } else if (message.content.startsWith("!stop")) {
