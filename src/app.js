@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 const keepAlive = require("./keepAlive");
 const startServer = require("./server");
-//const VoicePlayer = require("./VoicePlayer");
+const VoicePlayer = require("./VoicePlayer");
 const { quote, newQuote, editQuote, exportQuotes } = require("./quotes");
 const convertTemp = require("./convertTemp");
 
@@ -44,7 +44,7 @@ client.on("ready", () => {
   console.log("bot is ready!");
 });
 
-//const voicePlayer = new VoicePlayer(client);
+const voicePlayer = new VoicePlayer(client);
 
 function listCommands(message) {
   let commandsList = "Text Commands:\n";
@@ -81,25 +81,31 @@ client.on("message", async message => {
     }
   }
 
-  // for (let command in voiceCommands) {
-  //   if (voiceCommands.hasOwnProperty(command)) {
-  //     if (message.content === command) {
-  //       voicePlayer.play(message, voiceCommands[command]);
-  //       return;
-  //     }
-  //   }
-  // }
+  for (let command in voiceCommands) {
+    if (voiceCommands.hasOwnProperty(command)) {
+      if (message.content === command) {
+        let m = voicePlayer.play(message, voiceCommands[command]);
+        if (m) message.channel.send(m);
+        return;
+      }
+    }
+  }
 
-  // for (let command in multiVoiceCommands) {
-  //   if (multiVoiceCommands.hasOwnProperty(command)) {
-  //     if (message.content === command) {
-  //       voicePlayer.multiPlay(message, multiVoiceCommands[command]);
-  //       return;
-  //     }
-  //   }
-  // }
-
-  if (message.content.startsWith("!quote")) {
+  for (let command in multiVoiceCommands) {
+    if (multiVoiceCommands.hasOwnProperty(command)) {
+      if (message.content === command) {
+        let m = voicePlayer.multiPlay(message, multiVoiceCommands[command]);
+        if (m) message.channel.send(m);
+        return;
+      }
+    }
+  }
+  if (message.content.startsWith("!join")) {
+    let m = await voicePlayer.join(message);
+    if (m) message.channel.send(m);
+  } else if (message.content.startsWith("!leave")) {
+    voicePlayer.leave(message);
+  } else if (message.content.startsWith("!quote")) {
     let m = await quote(message);
     message.channel.send(m);
     return;

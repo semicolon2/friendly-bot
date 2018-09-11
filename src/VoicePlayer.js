@@ -1,33 +1,46 @@
-import { List, Map } from "immutable";
-import path from "path";
+const path = require("path");
 
-module.export = class VoicePlayer {
+module.exports = class VoicePlayer {
   constructor(client) {
-    this.soundQueue = Map();
+    this.soundQueue = {};
     this.client = client;
     this.multiPlayHistory = {};
   }
 
+  async join(message) {
+    let voiceChannel = message.member.voiceChannel;
+    if (!voiceChannel) {
+      return "Must be in a voice channel";
+    }
+    if (voiceChannel.connection) {
+      return "already in channel";
+    }
+    try {
+      await voiceChannel.join();
+    } catch (e) {
+      console.error(e);
+      return "Error connecting to channel :(";
+    }
+  }
+
+  leave(message) {
+    if (message.guild.voiceConnection) {
+      message.guild.voiceConnection.disconnect();
+    }
+  }
+
   play(message, fileName) {
     if (!message.member.voiceChannel) {
-      return;
+      return "Must be in a voice channel";
     }
-    if (message.member.voiceChannel.connection) {
-      this.playSound(
-        message.guild.id,
-        message.member.voiceChannel.connection,
-        fileName
-      );
-    } else {
-      message.member.voiceChannel.join().then(
-        connection => {
-          this.playSound(message.guild.id, connection, fileName);
-        },
-        err => {
-          console.error(err);
-        }
-      );
+    if (!message.member.voiceChannel.connection) {
+      return "Must use !join first";
     }
+    this._playSound(
+      message.guild.id,
+      message.member.voiceChannel.connection,
+      fileName
+    );
   }
 
   multiPlay(message, command) {
@@ -45,35 +58,25 @@ module.export = class VoicePlayer {
     this.play(message, fileName);
   }
 
-  playSound(guildId, connection, fileName) {
+  _playSound(guildId, connection, fileName) {
     if (connection.speaking === true) {
-      this.soundQueue = this.soundQueue.update(guildId, List(), list =>
-        list.push(Map({ guildId, connection, fileName }))
-      );
+      if (this.soundQueue.hasOwnProperty(guildId)) {
+        this.soundQueue[guildId].push({ connection, fileName });
+      } else {
+        this.soundQueue[guildId] = [{ connection, fileName }];
+      }
     } else {
       connection
         .playFile(path.join(__dirname, "..", "sounds", fileName))
         .on("end", () => {
-          if (!this.soundQueue.has(guildId)) {
-            connection.disconnect();
-          } else {
-            let nextSound = this.soundQueue.get(guildId).first();
-            this.soundQueue = this.soundQueue.update(guildId, list =>
-              list.shift()
-            );
-
-            if (this.soundQueue.get(guildId).isEmpty()) {
-              this.soundQueue.delete(guildId);
-            }
-
-            if (nextSound != undefined) {
-              this.playSound(
-                nextSound.get("guildId"),
-                nextSound.get("connection"),
-                nextSound.get("fileName")
-              );
-            }
+          if (!this.soundQueue.hasOwnProperty(guildId)) {
+            return;
           }
+          let nextSound = this.soundQueue[guildId].shift();
+          if (this.soundQueue[guildId].length === 0) {
+            delete this.soundQueue[guildId];
+          }
+          this._playSound(guildId, nextSound.connection, nextSound.fileName);
         });
     }
   }
