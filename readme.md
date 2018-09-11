@@ -25,11 +25,10 @@ rename `.env.example` to `.env`, and add your own values
 npm run start
 ```
 
-You can also build first, this probably runs better and you can install without dev dependencies `npm install --production`
+For development I recommend installing and using nodemon to reload on file changes, after installing it you can run dev.
 
 ```
-npm run build
-npm run deploy
+npm run dev
 ```
 
 [generate a link here](https://discordapi.com/permissions.html) to add the bot to your server, it requires read messages, send messages, view channel, connect, and speak to fully function
