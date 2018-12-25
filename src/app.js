@@ -5,6 +5,7 @@ const startServer = require("./server");
 const VoicePlayer = require("./VoicePlayer");
 const { quote, newQuote, editQuote, exportQuotes } = require("./quotes");
 const convertTemp = require("./convertTemp");
+const vend = require("./vend");
 
 const {
   voiceCommands,
@@ -133,6 +134,8 @@ client.on("message", async message => {
     message.channel.send(listCommands(message));
   } else if (message.content.startsWith("!stop")) {
     voicePlayer.stop(message);
+  } else if (message.content.startsWith("!vend")) {
+      message.channel.send(vend())
   }
 
   //TODO: let bot ignore specified channels
