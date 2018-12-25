@@ -135,7 +135,7 @@ client.on("message", async message => {
   } else if (message.content.startsWith("!stop")) {
     voicePlayer.stop(message);
   } else if (message.content.startsWith("!vend")) {
-      message.channel.send(vend())
+      message.channel.send(vend(message))
   }
 
   //TODO: let bot ignore specified channels
