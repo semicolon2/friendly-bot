@@ -36,6 +36,8 @@ const eightball = [
   "Very doubtful"
 ];
 
+const vendExp = RegExp("^![a-zA-Z0-9]*end")
+
 startServer();
 keepAlive();
 
@@ -134,7 +136,7 @@ client.on("message", async message => {
     message.channel.send(listCommands(message));
   } else if (message.content.startsWith("!stop")) {
     voicePlayer.stop(message);
-  } else if (message.content.startsWith("!vend")) {
+  } else if (vendExp.test(message.content)) {
       message.channel.send(vend(message))
   }
 
