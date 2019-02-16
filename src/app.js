@@ -5,7 +5,6 @@ const startServer = require("./server");
 const VoicePlayer = require("./VoicePlayer");
 const { quote, newQuote, editQuote, exportQuotes } = require("./quotes");
 const convertTemp = require("./convertTemp");
-const vend = require("./vend");
 
 const {
   voiceCommands,
@@ -35,8 +34,6 @@ const eightball = [
   "Outlook not so good",
   "Very doubtful"
 ];
-
-const vendExp = RegExp("^![a-zA-Z0-9]*end")
 
 startServer();
 keepAlive();
@@ -136,8 +133,6 @@ client.on("message", async message => {
     message.channel.send(listCommands(message));
   } else if (message.content.startsWith("!stop")) {
     voicePlayer.stop(message);
-  } else if (vendExp.test(message.content)) {
-      message.channel.send(vend(message))
   }
 
   //TODO: let bot ignore specified channels
