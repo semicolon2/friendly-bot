@@ -71,7 +71,8 @@
     "!wombocombo": "wombocombo.wav",
     "!mybrand": "mybrand.wav",
     "!mcdonalds": "mcdonalds.wav",
-    "!died": "IDie.mp3"
+    "!died": "IDie.mp3",
+    "!potatoes": "mashed_potatoes.wav"
   },
   "multiVoiceCommands": {
     "!wurtz": {
