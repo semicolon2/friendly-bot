@@ -72,9 +72,9 @@ async function exportQuotes(message) {
   try {
     let quotes = await serverQuotes(message.guild.id);
     let quotestr = quotes.reduce((file, quote) => {
-      return file + quote.id + " " + quote.quote + "\r\n";
+      return file + quote.id + "," + '"' + quote.quote + '"' + "\r\n";
     }, "");
-    fs.writeFile("export.csv", quotestr, err => {
+    fs.writeFile("export.csv", quotestr, (err) => {
       if (err) throw err;
     });
     return { files: [{ attachment: "export.csv", name: "export.csv" }] };
@@ -88,5 +88,5 @@ module.exports = {
   quote,
   newQuote,
   editQuote,
-  exportQuotes
+  exportQuotes,
 };
